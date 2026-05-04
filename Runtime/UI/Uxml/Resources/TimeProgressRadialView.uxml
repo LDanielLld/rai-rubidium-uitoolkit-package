@@ -1,0 +1,4 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/RubidiumGames/UI/Uss/Views/TimeProgressStyle.uss?fileID=7433441132597879392&amp;guid=54edb4bc27f5abf478f9ee267d4d7a75&amp;type=3#TimeProgressStyle" />
+    <UIInterface.TimeProgress type="RADIAL" progress="65.6" size="35" direction="CounterClockwise" focusable="false" name="RadialTime" color_reactive="true" opacity="100" />
+</ui:UXML>

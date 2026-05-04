@@ -1,0 +1,8 @@
+.rt-background {
+    flex-grow: 1;
+    position: absolute;
+    overflow: hidden;
+    -unity-background-scale-mode: stretch-to-fill;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,156 @@
+.timedisplay__frame {
+    width: 100%;
+    height: 100%;
+    --time-animation: 0.25s;
+}
+
+.timedisplay__panel-outside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+
+.timedisplay__container {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}
+
+.timedisplay__container-odometer {
+    width: 80%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.timedisplay__time-component {
+    width: 30%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.timedisplay__time-frame {
+    position: absolute;
+    left: auto;
+    top: auto;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    border-width: 3px;
+    border-top-color: rgb(13, 18, 23);
+    border-left-color: rgb(13, 18, 23);
+    border-bottom-color: rgb(44, 62, 80);
+    border-right-color: rgb(44, 62, 80);
+    background-color: rgb(27, 38, 49);
+    border-radius: 8px;
+}
+
+.timedisplay__text {
+    height: 100%;
+    font-size: 38px;
+    color: rgb(255, 255, 255);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    width: 100%;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-outline-width: 0;
+    -unity-text-outline-color: rgba(0, 0, 0, 0);
+    text-shadow: 1px 1px 0 rgb(0, 0, 0);
+    transition-property: translate;
+    transition-timing-function: ease-in-out;
+    transition-duration: var(--time-animation);
+}
+
+.timedisplay__text-left {
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 5%;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: middle-right;
+    position: absolute;
+}
+
+.timedisplay__text-right {
+    padding-left: 5%;
+    -unity-text-align: middle-left;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    position: absolute;
+}
+
+.timedisplay__digit-frame {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    flex-direction: row;
+}
+
+.timedisplay__digit-strip {
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+}
+
+.timedisplay__digit-number {
+    height: 100%;
+    width: 50%;
+    -unity-text-align: upper-right;
+}
+
+.timedisplay__icon {
+    width: 15%;
+    height: 100%;
+}
+
+.timedisplay__text-down {
+    translate: 0 100%;
+    opacity: 1;
+}
+
+.timedisplay__text-center {
+    translate: 0 0;
+    opacity: 1;
+}
+
+.timedisplay__text-up {
+    translate: 0 -100%;
+    opacity: 1;
+}
+
+.timedisplay__text-no-animation {
+    transition-duration: 0s;
+}

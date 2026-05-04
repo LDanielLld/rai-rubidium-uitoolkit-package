@@ -1,0 +1,138 @@
+.statdisplay__frame {
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    --time-animation: 0.25s;
+}
+
+.statdisplay__panel-outside {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+}
+
+.statdisplay__container {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    padding-top: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    padding-left: 5%;
+}
+
+.statdisplay__container-text {
+    width: 70%;
+    height: 100%;
+    flex-direction: row;
+}
+
+.statdisplay__icon {
+    width: 15%;
+    height: 100%;
+}
+
+.statdisplay_pulse {
+    scale: 1.3 1.3;
+}
+
+.statdisplay__text-central {
+    transition-timing-function: ease-out, ease-out;
+    transition-duration: 0.15s, 0.15s;
+    transition-property: opacity, translate;
+    position: absolute;
+    -unity-text-align: middle-center;
+}
+
+.statdisplay__text {
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 0 rgb(0, 0, 0);
+    -unity-text-outline-width: 1px;
+    -unity-text-outline-color: rgb(0, 0, 0);
+    transition-timing-function: ease-out-bounce;
+    transition-duration: 0.25s;
+    transition-property: scale;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    width: 100%;
+    height: 100%;
+    font-size: 45px;
+    -unity-text-align: middle-center;
+}
+
+.statdisplay__text-left {
+    -unity-text-align: middle-right;
+    padding-top: 0;
+    padding-right: 5%;
+    padding-bottom: 0;
+    padding-left: 0;
+}
+
+.statdisplay__text-right {
+    -unity-text-align: middle-left;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 5%;
+}
+
+.statdisplay__text-animation {
+    transition-timing-function: ease-in-out, ease;
+    transition-duration: 0.25s, 0.25s;
+    transition-property: translate, opacity;
+    position: absolute;
+    transition-delay: 0s, 0s;
+}
+
+.statdisplay__container-odometer {
+    width: 45%;
+    overflow: hidden;
+}
+
+.statdisplay__text-center {
+    translate: 0 0;
+    opacity: 1;
+}
+
+.statdisplay__text-up {
+    translate: 0 -100%;
+}
+
+.statdisplay__text-down {
+    translate: 0 100%;
+}
+
+.statdisplay__text-no-animation {
+    transition-duration: 0s;
+}
+
+.statdisplay__text-slide-up {
+    opacity: 0;
+    translate: 0 -45%;
+}
+
+.statdisplay__text-slide-down {
+    opacity: 0;
+    translate: 0 45%;
+}

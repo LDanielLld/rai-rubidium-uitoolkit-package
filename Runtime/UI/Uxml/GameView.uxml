@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Template name="ScoreDisplay" src="project://database/Assets/RubidiumGames/UI/Uxml/Resources/ScoreDisplay.uxml?fileID=9197481963319205126&amp;guid=3da021a6f37bfbd4698e2a89d60c28f1&amp;type=3#ScoreDisplay" />
+    <ui:Template name="StatView" src="project://database/Assets/RubidiumGames/UI/Uxml/Resources/StatView.uxml?fileID=9197481963319205126&amp;guid=9556c1360537be644a87a27c297b75d4&amp;type=3#StatView" />
+    <ui:Template name="TimeProgressView" src="project://database/Assets/RubidiumGames/UI/Uxml/Resources/TimeProgressRadialView.uxml?fileID=9197481963319205126&amp;guid=12dc993f83a5cd94aa50617aee09f41d&amp;type=3#TimeProgressRadialView" />
+    <ui:Template name="TimeProgressLinealView" src="project://database/Assets/RubidiumGames/UI/Uxml/Resources/TimeProgressLinealView.uxml?fileID=9197481963319205126&amp;guid=cc7358330a5c9024c85c90ef04c14fdd&amp;type=3#TimeProgressLinealView" />
+    <ui:Template name="TimeView" src="project://database/Assets/RubidiumGames/UI/Uxml/Resources/TimeView.uxml?fileID=9197481963319205126&amp;guid=a45f86801bb8cac45b5e13c64538ecbd&amp;type=3#TimeView" />
+    <Style src="project://database/Assets/RubidiumGames/UI/Uss/GameViewStyle.uss?fileID=7433441132597879392&amp;guid=370c34500aeee6e46afa9198e8ff369e&amp;type=3#GameViewStyle" />
+    <ui:VisualElement name="GameView" style="flex-grow: 1; width: 100%; height: 100%;">
+        <ui:VisualElement name="game__container" class="game__container" style="align-self: auto;">
+            <ui:Instance template="ScoreDisplay" name="ScoreDisplay" style="margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; width: 15%; height: 10%;" />
+            <ui:Instance template="StatView" name="StatView" style="margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px; width: 13%; height: 7%;" />
+            <ui:Instance template="TimeProgressView" name="BarTimeRadial" style="width: 300px; height: 300px;" />
+            <ui:Instance template="TimeProgressLinealView" name="TimeProgressLinealView" style="width: 450px; height: 100px;" />
+            <ui:Instance template="TimeView" name="TimeView" style="width: 13%; height: 7%; margin-top: 25px; margin-right: 25px; margin-bottom: 25px; margin-left: 25px;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

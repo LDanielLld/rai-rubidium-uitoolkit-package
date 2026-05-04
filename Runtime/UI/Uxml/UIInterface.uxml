@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="CountdownSeq" src="project://database/Assets/RubidiumGames/UI/Uxml/StartView.uxml?fileID=9197481963319205126&amp;guid=49d7ea7e002007340b022b2798dd7f92&amp;type=3#StartView" />
+    <ui:Template name="GameView" src="project://database/Assets/RubidiumGames/UI/Uxml/GameView.uxml?fileID=9197481963319205126&amp;guid=d2980da963d667b4bace8e394c32314b&amp;type=3#GameView" />
+    <ui:Template name="PauseView" src="project://database/Assets/RubidiumGames/UI/Uxml/PauseView.uxml?fileID=9197481963319205126&amp;guid=e1f0a2959051e3047935eea79c3e7509&amp;type=3#PauseView" />
+    <ui:Template name="WarningView" src="project://database/Assets/RubidiumGames/UI/Uxml/WarningView.uxml?fileID=9197481963319205126&amp;guid=37cbbbd7831403142845ac3aaa3d89b0&amp;type=3#WarningView" />
+    <ui:Template name="FinishView" src="project://database/Assets/RubidiumGames/UI/Uxml/FinishView.uxml?fileID=9197481963319205126&amp;guid=3e52c8f286ce01a438220d42555ce757&amp;type=3#FinishView" />
+    <Style src="project://database/Assets/RubidiumGames/UI/Uss/Base/Common.uss?fileID=7433441132597879392&amp;guid=8a980aa34f8d14449bf90b7cee247abb&amp;type=3#Common" />
+    <ui:Instance template="CountdownSeq" name="StartView" picking-mode="Ignore" style="width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="GameView" name="GameView" picking-mode="Ignore" style="display: none; width: 100%; height: 100%; opacity: 1;" />
+    <ui:Instance template="PauseView" name="PauseView" style="width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="WarningView" name="WarningView" style="width: 100%; height: 100%; display: none;" />
+    <ui:Instance template="FinishView" name="FinishView" style="width: 100%; height: 100%; display: none;" />
+    <ui:VisualElement name="overlay-vfx" class="overlay-vfx" style="flex-grow: 1; font-size: 14px; display: none;">
+        <ui:Label tabindex="-1" text="FPS:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="fps-counter" class="fps-counter" />
+    </ui:VisualElement>
+</ui:UXML>

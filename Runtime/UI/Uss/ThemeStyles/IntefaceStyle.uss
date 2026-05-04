@@ -1,0 +1,23 @@
+
+.interface__panel {
+    background-color: rgb(52, 73, 94);    
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;    
+    border-top-width: 3px;
+    border-right-width: 3px;
+    border-bottom-width: 3px;
+    border-left-width: 3px;
+    border-left-color: rgb(93, 173, 226);
+    border-right-color: rgb(27, 38, 49);
+    border-top-color: rgb(93, 173, 226);
+    border-bottom-color: rgb(27, 38, 49);
+}
+
+.overlay-vfx {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;    
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
