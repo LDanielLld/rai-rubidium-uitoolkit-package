@@ -1,0 +1,54 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Runtime/UIViews/Components/TimeCounter/TimeCounterViewStyle.uss?fileID=7433441132597879392&amp;guid=7fa0da622c75e904d9b03e39bf10ea9c&amp;type=3#TimeCounterViewStyle" />
+    <Style src="project://database/Assets/Runtime/UIViews/Components/StringIcon/StringIconStyle.uss?fileID=7433441132597879392&amp;guid=1c17d6caf45c03f4db46a6072c291934&amp;type=3#StringIconStyle" />
+    <ui:VisualElement name="TimeDisplay" picking-mode="Ignore" class="timedisplay__frame">
+        <ui:VisualElement name="timedisplay__paneloutside" picking-mode="Ignore" class="interface__panel timedisplay__panel-outside" />
+        <ui:VisualElement name="timedisplay__container" picking-mode="Ignore" class="timedisplay__container">
+            <UIInterface.StringIcon name="timedisplay-icon" icon-unicode="Cronometro" font-size="60" icon-color="#D4C74DFF" picking-mode="Ignore" class="timedisplay__icon" />
+            <ui:VisualElement name="space" picking-mode="Ignore" style="height: 100%; width: 5%;" />
+            <ui:VisualElement name="statdisplay__container-text" picking-mode="Ignore" class="timedisplay__container-odometer">
+                <ui:VisualElement name="timedisplay__hour-component" picking-mode="Ignore" class="timedisplay__time-component">
+                    <ui:VisualElement name="statdisplay__hour-frame" picking-mode="Ignore" class="timedisplay__time-frame" />
+                    <ui:VisualElement name="FrameHour" picking-mode="Ignore" class="timedisplay__digit-frame">
+                        <ui:VisualElement name="StripHourDecenas" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-hour-decena-current" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-hour-decena-next" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="StripHourUnidades" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-hour-unidad-current" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-hour-unidad-next" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text=":" parse-escape-sequences="true" display-tooltip-when-elided="true" picking-mode="Ignore" name="separator_point-hour-minute" class="timedisplay__text" style="width: 5%; height: 100%;" />
+                <ui:VisualElement name="timedisplay__minu-component" picking-mode="Ignore" class="timedisplay__time-component" style="opacity: 1;">
+                    <ui:VisualElement name="statdisplay__minu-frame" picking-mode="Ignore" class="timedisplay__time-frame" />
+                    <ui:VisualElement name="FrameMinu" picking-mode="Ignore" class="timedisplay__digit-frame">
+                        <ui:VisualElement name="StripMinuDecenas" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-min-decena-current" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-min-decena-next" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="StripMinuUnidades" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-min-unidad-current" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-min-unidad-next" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:Label tabindex="-1" text=":" parse-escape-sequences="true" display-tooltip-when-elided="true" picking-mode="Ignore" name="separator_point-minute-second" class="timedisplay__text" style="width: 5%; height: 100%;" />
+                <ui:VisualElement name="timedisplay__secnd-component" picking-mode="Ignore" class="timedisplay__time-component">
+                    <ui:VisualElement name="statdisplay__secnd-frame" picking-mode="Ignore" class="timedisplay__time-frame" />
+                    <ui:VisualElement name="FrameSecnd" picking-mode="Ignore" class="timedisplay__digit-frame">
+                        <ui:VisualElement name="StripSecndDecenas" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-sec-decena-current" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-sec-decena-next" picking-mode="Ignore" class="timedisplay__text-left timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="StripSecndUnidades" picking-mode="Ignore" class="num-0 timedisplay__digit-strip">
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-sec-unidad-current" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text" />
+                            <ui:Label tabindex="-1" text="1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="digit-sec-unidad-next" picking-mode="Ignore" class="timedisplay__text-right timedisplay__text timedisplay__text-down" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

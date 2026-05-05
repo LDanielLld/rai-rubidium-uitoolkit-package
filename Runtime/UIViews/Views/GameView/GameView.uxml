@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Runtime/UIViews/Views/GameView/GameViewStyle.uss?fileID=7433441132597879392&amp;guid=89af06c324b254c4280a352552589b77&amp;type=3#GameViewStyle" />
+    <ui:VisualElement name="GameView" style="flex-grow: 1; width: 100%; height: 100%;">
+        <ui:VisualElement name="game__container" class="game__container" style="align-self: auto;" />
+    </ui:VisualElement>
+</ui:UXML>

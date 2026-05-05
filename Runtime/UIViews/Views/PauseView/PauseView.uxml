@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Runtime/UIViews/Views/PauseView/PauseStyle.uss?fileID=7433441132597879392&amp;guid=60f81c1bc1c4fd945a508675d097da69&amp;type=3#PauseStyle" />
+    <Style src="project://database/Assets/Runtime/UIViews/Components/StringIcon/StringIconStyle.uss?fileID=7433441132597879392&amp;guid=1c17d6caf45c03f4db46a6072c291934&amp;type=3#StringIconStyle" />
+    <ui:VisualElement name="panelpause-container" class="panelpause-container">
+        <ui:VisualElement name="panelpause-panel" class="interface__panel panelpause-panel" style="width: 40%;">
+            <UIInterface.StringIcon name="panelpause-iconleft" icon-unicode="Pausa" font-size="110" icon-color="#D4C74DFF" class="panelpause-icon" />
+            <ui:Label tabindex="-1" text="PAUSA" parse-escape-sequences="true" display-tooltip-when-elided="true" name="panelpause-sequence" class="panelpause-text-started" style="width: 60%;" />
+            <UIInterface.StringIcon name="panelpause-iconright" font-size="110" icon-unicode="Pausa" icon-color="#D4C74DFF" class="panelpause-icon" />
+        </ui:VisualElement>
+        <ui:VisualElement name="panelpause-notification" class="panelpause-notification">
+            <ui:Label tabindex="-1" text="Pulsa " parse-escape-sequences="true" display-tooltip-when-elided="true" name="panelpause-not1" class="panelpause-text-notification" />
+            <ui:Label tabindex="-1" text="Espacio" parse-escape-sequences="true" display-tooltip-when-elided="true" name="panelpause-not2" class="panelpause-text-notification panelpause-text-notification-bold" />
+            <ui:Label tabindex="-1" text="para continuar" parse-escape-sequences="true" display-tooltip-when-elided="true" name="panelpause-not3" class="panelpause-text-notification" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

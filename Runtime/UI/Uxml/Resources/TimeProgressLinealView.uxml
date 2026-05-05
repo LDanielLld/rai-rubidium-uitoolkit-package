@@ -1,4 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <Style src="project://database/Assets/RubidiumGames/UI/Uss/Views/TimeProgressStyle.uss?fileID=7433441132597879392&amp;guid=54edb4bc27f5abf478f9ee267d4d7a75&amp;type=3#TimeProgressStyle" />
-    <UIInterface.TimeProgress type="LINEAL" name="BarTime" color_reactive="true" progress="45.7" valuewarning="35" valuecritic="15" size="35" opacity="100" />
-</ui:UXML>

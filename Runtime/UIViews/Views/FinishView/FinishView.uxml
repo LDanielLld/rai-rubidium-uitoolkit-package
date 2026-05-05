@@ -1,0 +1,29 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="FireworksView" src="project://database/Assets/Runtime/UIViews/Components/Fireworks/FireworksView.uxml?fileID=9197481963319205126&amp;guid=13e0417c006043e4fa6447e50f3f206a&amp;type=3#FireworksView" />
+    <ui:Template name="TitleComponentView" src="project://database/Assets/Runtime/UIViews/Components/TitleComponent/TitleComponentView.uxml?fileID=9197481963319205126&amp;guid=a2f1be6a39907f64098d293d62b4882b&amp;type=3#TitleComponentView" />
+    <Style src="project://database/Assets/Runtime/UIViews/Views/FinishView/FinishViewStyle.uss?fileID=7433441132597879392&amp;guid=2923fc72076cfe34caf2e944e52bb4c7&amp;type=3#FinishViewStyle" />
+    <Style src="project://database/Assets/Runtime/UIViews/Components/ScoreRow/ScoreRowStyle.uss?fileID=7433441132597879392&amp;guid=6575152fb180c8a4ba1a10915dc71b2b&amp;type=3#ScoreRowStyle" />
+    <ui:VisualElement name="finishview-container" class="finishview-container">
+        <ui:VisualElement name="finishview-container-scores" class="finishview-container-panel" style="flex-grow: 1;">
+            <ui:Instance template="FireworksView" name="finishview-fireworks-background" style="position: absolute; width: 100%; height: 100%;" />
+            <ui:VisualElement name="finishview-panel" class="interface__panel finishview_panel-score">
+                <ui:VisualElement name="finishview-panel-title" class="finishview_panel-tittle">
+                    <ui:Instance template="TitleComponentView" name="finishview-title" style="position: absolute; top: -10%; width: 40%; height: 100%;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="finishview-panel-scores" class="finishview_panel-scores" />
+            </ui:VisualElement>
+            <ui:VisualElement name="finishview-panel-user" class="interface__panel finishview-panel-user" style="top: 5%;">
+                <ui:Label tabindex="-1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="finishview-text-user" class="finishview-text-user" />
+            </ui:VisualElement>
+            <ui:VisualElement name="finishview-countdown-panel" class="finishview-countdown-panel finishview-countdown-fade">
+                <ui:VisualElement name="finishview-countdown" class="interface__panel finishview-countdown" />
+                <ui:Label tabindex="-1" text="99" parse-escape-sequences="true" display-tooltip-when-elided="true" name="finishview-countdown-sequence" class="finishview-text" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="finishview-container-signal" class="finishview-container-panel finishview-signal-shrink">
+            <ui:VisualElement name="finishview-signal" class="interface__panel finishview-signal" style="width: 70%; height: 18%; position: absolute;">
+                <ui:Label tabindex="-1" text="¡Tarea Completada!" parse-escape-sequences="true" display-tooltip-when-elided="true" name="finishview-signal-label" class="countdownseq-text-started finishview-signal-label" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
