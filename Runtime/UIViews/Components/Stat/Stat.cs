@@ -145,7 +145,7 @@ namespace UIInterface
 
             //Inicializa etiqueta principal
             if(value!=null)
-                value.Init(cscore, type, TypeAnim.FADE_SLIDE);
+                value.Init(cscore, type, mTypeAnim);
             
 
             //Actualiza etiqueta objetivo
