@@ -94,7 +94,7 @@ namespace UIInterface
         private void SetupViews()
         {
             //Inicializa componente raiz
-            VisualElement root = m_MainMenuDocument.rootVisualElement;
+            root = m_MainMenuDocument.rootVisualElement;
 
             //Registra todas las vistas individuales
             mStartView = new StartView(root.Q<VisualElement>(kStartViewName)); // Pantalla de inicio            
@@ -130,47 +130,14 @@ namespace UIInterface
 
         #region [Function] Inicializacion de la vista Game   
         /// <summary>
-        /// Instancia y registra una vista a partir de su UXML asset
-        /// </summary>
-        private T CreateView<T>(object element) where T : UIView, new()
-        {
-            /*var container = new VisualElement();
-
-            // Tamaño completo del panel
-            container.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
-            container.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
-            */
-            //var container = root.Q<VisualElement>(kStartViewName)
-
-            //asset.CloneTree(container);
-            //root.Add(container);
-
-            //Crea y esconde
-            var view = (T)System.Activator.CreateInstance(typeof(T), element);
-           // var view = new T();
-            //view.Hide();
-            
-
-            return view;
-        }        
-
-        /// <summary>
-        /// Inyeccion de la GameView desde el juego concreto. 
-        /// El juego llama a este metodo en su Awake/Start pasando su GameView
-        /// </summary>       
-        public void SetGameView(UIView gameView, VisualTreeAsset gameViewAsset)
-        {
-            mGameView = gameView;                        
-        }
-
-        /// <summary>
-        /// Acceso a la GameView tipada para que el juego pueda llamar a sus metodos especificos
+        /// Se crea y añade desde fuera de la clase. Enviando un UIView
         /// </summary>        
-        public T GetGameView<T>() where T : UIView
+        public void SetGameView(UIView gameView)
         {
-            if (mGameView is T typed) return typed;            
-            return null;
-        }
+            mGameView = gameView;
+            mGameView.Initialize(root.Q<VisualElement>(kWarningViewName));
+            m_AllViews.Add(mGameView);
+        }        
         #endregion
         //*********************************************************************************//
         //*********************************************************************************//

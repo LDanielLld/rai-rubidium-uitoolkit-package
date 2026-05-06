@@ -40,6 +40,13 @@ namespace UIInterface
         }
 
         /// <summary>
+        /// Contructor vacio
+        /// </summary>        
+        public UIView()
+        {            
+        }
+
+        /// <summary>
         /// Metodo para inicializar el componente UI. Se puede personalizar al sobreescribir
         /// </summary>
         public virtual void Initialize()
@@ -50,6 +57,22 @@ namespace UIInterface
             //Se inicializan elementos visuales y eventos, en caso de necesitarlos
             SetVisualElements();
             RegisterUICallbacks();            
+        }
+
+        /// <summary>
+        /// Metodo para inicializar el componente UI, incorporando el elemento Top
+        /// </summary>
+        public virtual void Initialize(VisualElement topElement)
+        {
+            //Asigna elemento raiz y si no existe lanza una excepcion de argumento
+            mTopElement = topElement ?? throw new ArgumentException(nameof(topElement));
+
+            //El primer paso es ocultar el elemento al crearlo
+            Hide();
+
+            //Se inicializan elementos visuales y eventos, en caso de necesitarlos
+            SetVisualElements();
+            RegisterUICallbacks();
         }
         #endregion
 
