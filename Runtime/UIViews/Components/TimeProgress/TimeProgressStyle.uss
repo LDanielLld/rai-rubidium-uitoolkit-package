@@ -1,6 +1,4 @@
 .bartime__progress {
-    min-width: 100px;
-    min-height: 100px;
     --track-color: rgb(52, 73, 94);
     --progress-color_green: rgb(46, 204, 113);
     --progress-color_yellow: rgb(241, 196, 15);
@@ -58,8 +56,6 @@
     flex-direction: row;
     align-items: flex-start;
     height: 100%;
-    min-width: 0;
-    max-width: 100%;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
