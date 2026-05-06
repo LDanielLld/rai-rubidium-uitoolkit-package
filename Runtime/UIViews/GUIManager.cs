@@ -132,23 +132,35 @@ namespace UIInterface
         /// <summary>
         /// Instancia y registra una vista a partir de su UXML asset
         /// </summary>
-        private T CreateView<T>(VisualTreeAsset asset) where T : UIView, new()
+        private T CreateView<T>(object element) where T : UIView, new()
         {
-            var container = new VisualElement();
+            /*var container = new VisualElement();
 
             // Tamaño completo del panel
             container.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
-            container.style.height = new StyleLength(new Length(100, LengthUnit.Percent));            
+            container.style.height = new StyleLength(new Length(100, LengthUnit.Percent));
+            */
+            //var container = root.Q<VisualElement>(kStartViewName)
 
-            asset.CloneTree(container);
-            root.Add(container);
+            //asset.CloneTree(container);
+            //root.Add(container);
 
             //Crea y esconde
-            var view = new T();
-            view.Hide();
-            m_AllViews.Add(mGameView);
+            var view = (T)System.Activator.CreateInstance(typeof(T), element);
+           // var view = new T();
+            //view.Hide();
+            
 
             return view;
+        }        
+
+        /// <summary>
+        /// Inyeccion de la GameView desde el juego concreto. 
+        /// El juego llama a este metodo en su Awake/Start pasando su GameView
+        /// </summary>       
+        public void SetGameView(UIView gameView, VisualTreeAsset gameViewAsset)
+        {
+            mGameView = gameView;                        
         }
 
         /// <summary>
