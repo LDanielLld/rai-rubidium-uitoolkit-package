@@ -135,7 +135,7 @@ namespace UIInterface
         public void SetGameView(UIView gameView)
         {
             mGameView = gameView;
-            mGameView.Initialize(root.Q<VisualElement>(kWarningViewName));
+            mGameView.Initialize(root.Q<VisualElement>(kGameViewName));
             m_AllViews.Add(mGameView);
         }        
         #endregion
