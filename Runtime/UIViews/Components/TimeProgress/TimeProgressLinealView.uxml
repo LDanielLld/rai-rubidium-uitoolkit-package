@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Runtime/UIViews/Components/TimeProgress/TimeProgressStyle.uss?fileID=7433441132597879392&amp;guid=4a9e61f14b152d24dbc7c8ee8b2b3b08&amp;type=3#TimeProgressStyle" />
-    <UIInterface.TimeProgress type="LINEAL" name="BarTime" color_reactive="true" progress="45.7" valuewarning="35" valuecritic="15" size="35" opacity="100" textenabled="true" />
+    <UIInterface.TimeProgress type="LINEAL" name="BarTime" color_reactive="true" progress="45.7" valuewarning="35" valuecritic="15" size="35" opacity="100" textenabled="true" style="height: 100%;" />
 </ui:UXML>
