@@ -55,7 +55,11 @@ namespace UIInterface
             //Atributo de cambio de colores para el estado warning
             UxmlFloatAttributeDescription mOpacityAttribute = new UxmlFloatAttributeDescription
             { name = "opacity", defaultValue = 100f };
-            
+
+            //Atributo de visibilidad del texto
+            UxmlBoolAttributeDescription mEnabledTextAttribute = new UxmlBoolAttributeDescription
+            { name = "textenabled", defaultValue = true };
+
 
 
             // Utiliza el metodo Init para asignar el valor del atributo en el fichero UXML a la propiedad progress en C#.
@@ -76,7 +80,10 @@ namespace UIInterface
                 //Hay que asegurarse que los valores de cambio de estados son correctos.
                 //El warning no puede ser menos que el critico                 
                 timeprogress.valuewarning = Mathf.Clamp(mWarningAttribute.GetValueFromBag(bag, cc), 0f, 100f);
-                timeprogress.valuecritic = Mathf.Clamp(mCriticAttribute.GetValueFromBag(bag, cc), 0f, timeprogress.valuewarning);               
+                timeprogress.valuecritic = Mathf.Clamp(mCriticAttribute.GetValueFromBag(bag, cc), 0f, timeprogress.valuewarning);          
+                
+                //Visibilidad del texto
+                timeprogress.textenabled = mEnabledTextAttribute.GetValueFromBag(bag, cc); //Asigna visilidad
             }
         }
 
@@ -238,6 +245,24 @@ namespace UIInterface
                 ReDrawAll();
             }
         }
+
+        /// <summary>
+        /// Establecer visibilidad del texto
+        /// </summary>        
+        public bool textenabled
+        {
+            get => isTextEnabled;
+            set
+            {
+                isTextEnabled = value;
+
+                //Adicionalmente debe actualizar fondo de lineal
+                if(isTextEnabled)
+                    mLabel.style.visibility = Visibility.Visible;
+                else
+                    mLabel.style.visibility = Visibility.Hidden;               
+            }
+        }
         #endregion
 
         #region [Function] Variables
@@ -271,11 +296,12 @@ namespace UIInterface
         static CustomStyleProperty<Color> s_ProgressColorRed = new CustomStyleProperty<Color>("--progress-color_red");
 
         //Colores delo progress bar
-        Color mTrackColor = Color.gray;
-        Color mProgressColor = Color.white;
+        private Color mTrackColor = Color.gray;
+        private Color mProgressColor = Color.white;
 
         // Etiqueta que muestra el porcentaje.
-        Label mLabel;
+        private Label mLabel;
+        private bool isTextEnabled;
 
         //El numero que se muestra en la etiqueta como un porcentaje
         private float mProgress;
