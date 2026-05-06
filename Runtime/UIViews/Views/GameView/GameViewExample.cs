@@ -9,25 +9,26 @@ namespace UIInterface
     /// Modulo modificable de todas las vistas, ya que es la que se tiene
     /// que adaptar para mostrar las estadisticas del juego, que serán 
     /// diferentes dependiendo del caso. 
-    /// Se queda en blanco para su implementacion en diferentes juegos
+    /// Se queda en blanco para su implementacion en diferentes juegos.
+    /// Este fichero es a modo de ejemplo
     /// </summary>
-    public partial class GameView : UIView
+    public partial class GameViewExample : UIView
     {       
         // Elementos visuales
         VisualElement mPanel; //Panel general
         
 
-       /* [SerializeField] VisualElement mDisplayScore;
+        [SerializeField] VisualElement mDisplayScore;
         [SerializeField] VisualElement mRepetitionStat;
-        [SerializeField] VisualElement mTimeCounter;*/
+        [SerializeField] VisualElement mTimeCounter;
    
 
         //Componentes de la interfaz de juego
-        /*  private ScoreDisplay scoreDisplay;
+        private ScoreDisplay scoreDisplay;
         private TimeProgress barTime;
         private TimeProgress radialTime;
         private Stat repetitionStat;
-        private TimeCounter timeCounter;*/
+        private TimeCounter timeCounter;
 
 
 
@@ -37,7 +38,7 @@ namespace UIInterface
         /// 
         /// </summary>
         /// <param name="topElement"></param>
-        public GameView(VisualElement topElement) : base(topElement)
+        public GameViewExample(VisualElement topElement) : base(topElement)
         {
         }
 
@@ -47,20 +48,21 @@ namespace UIInterface
         }
 
 
-     //   private float timeTotal = 0f;
-      //  private float points = 0.0f;
-      //  float combomax = 3.0f;
-      //  float combo = 1.0f;
+        private float timeTotal = 0f;
+        private float points = 0.0f;
+        float combomax = 3.0f;
+        float combo = 1.0f;
 
-      /*  private double timeTotalRefresh = 10000;
+        private double timeTotalRefresh = 10000;
         private float timeRefresh = 0f;
 
-        int rep = 0;*/
+        int rep = 0;
+
         public override bool Update(float deltaTime)
         {
             
 
-           /* timeTotal += deltaTime;
+            timeTotal += deltaTime;
             timeRefresh += deltaTime;
             timeTotalRefresh -= deltaTime;
 
@@ -111,7 +113,7 @@ namespace UIInterface
 
             //   timeRefresh = 0;
             //}
-            */
+            
             bool state = false;
             return state;
         }

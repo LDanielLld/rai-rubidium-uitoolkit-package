@@ -32,16 +32,20 @@ namespace UIInterface
         #region [Variables] Componentes graficos de la UI
         UIDocument m_MainMenuDocument;
 
+        //Elemento raiz
+        VisualElement root;
+
         UIView mCurrentView;
         UIView mPreviousView;
 
-        //Modal screens
-        UIView mStartView;  // Vista de la cuenta atras para empezar el juego
-        UIView mGameView;  // Vista con los elementos que interactuan durante el juego
+        //Modal screens - No necesitan modificacion
+        UIView mStartView;  // Vista de la cuenta atras para empezar el juego        
         UIView mPauseView;  // Vista con la pantalla de pausa
         UIView mWarningView;  // Vista con la pantalla de Warning (Problema con el robot)
         UIView mFinishView;  // Vista que marca el final del juego y la pantalla de puntuaciones
 
+        //Modal screen - Necesitan modificacion
+        UIView mGameView;  // Vista con los elementos que interactuan durante el juego
 
         // Lista de las vistas para eliminar recursos
         List<UIView> m_AllViews = new List<UIView>();
@@ -93,16 +97,14 @@ namespace UIInterface
             VisualElement root = m_MainMenuDocument.rootVisualElement;
 
             //Registra todas las vistas individuales
-            mStartView = new StartView(root.Q<VisualElement>(kStartViewName)); // Pantalla de inicio
-            mGameView = new GameView(root.Q<VisualElement>(kGameViewName)); // Pantalla de juego
+            mStartView = new StartView(root.Q<VisualElement>(kStartViewName)); // Pantalla de inicio            
             mWarningView = new WarningView(root.Q<VisualElement>(kWarningViewName)); // Pantalla de advertencia
             mPauseView = new PauseView(root.Q<VisualElement>(kPauseViewName)); //Pantalla de pausa
             mFinishView = new FinishView(root.Q<VisualElement>(kFinishViewName)); //Pantalla de pausa
 
 
             // Recolecta todas las vistas en un array, para gestiones de liberacion de memoria
-            m_AllViews.Add(mStartView);
-            m_AllViews.Add(mGameView);
+            m_AllViews.Add(mStartView);            
             m_AllViews.Add(mWarningView);
             m_AllViews.Add(mPauseView);
             m_AllViews.Add(mFinishView);
@@ -111,7 +113,10 @@ namespace UIInterface
 
 
         #region [Unity Function] Actualizacion   
-        // Update is called once per frame
+        /// <summary>
+        /// Bucle de actualizacion 
+        /// </summary>
+        
         private void Update()
         {
             //Ejecuta el metodo update del componente actual mostrado en pantalla, para ver si se 
@@ -119,6 +124,40 @@ namespace UIInterface
             if (mCurrentView != null)
                 isFinish = mCurrentView.Update(Time.deltaTime);
 
+        }
+        #endregion
+
+
+        #region [Function] Inicializacion de la vista Game   
+        /// <summary>
+        /// Instancia y registra una vista a partir de su UXML asset
+        /// </summary>
+        private T CreateView<T>(VisualTreeAsset asset) where T : UIView, new()
+        {
+            var container = new VisualElement();
+
+            // Tamaño completo del panel
+            container.style.width = new StyleLength(new Length(100, LengthUnit.Percent));
+            container.style.height = new StyleLength(new Length(100, LengthUnit.Percent));            
+
+            asset.CloneTree(container);
+            root.Add(container);
+
+            //Crea y esconde
+            var view = new T();
+            view.Hide();
+            m_AllViews.Add(mGameView);
+
+            return view;
+        }
+
+        /// <summary>
+        /// Acceso a la GameView tipada para que el juego pueda llamar a sus metodos especificos
+        /// </summary>        
+        public T GetGameView<T>() where T : UIView
+        {
+            if (mGameView is T typed) return typed;            
+            return null;
         }
         #endregion
         //*********************************************************************************//
@@ -163,6 +202,10 @@ namespace UIInterface
                 mCurrentView.Show();
         }
         #endregion
+        //*********************************************************************************//
+        //*********************************************************************************//
+
+        
 
         //*******************************Contador de frames********************************//
         //*********************************************************************************//         

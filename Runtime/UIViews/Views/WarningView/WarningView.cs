@@ -110,30 +110,7 @@ namespace UIInterface
 
             //Comprueba que debe salir de la pantalla de warning
             if (Input.GetKeyUp(KeyCode.Space))
-            {
-                // Ejecuta la accion registrada
-                UIEvents.WarningAction?.Invoke();
-
-                state = Warning(); //
-                //Solucionar el problema del robot
-                /* bool isFixed =
-                     RobotPlayerController.sharedInstance.modeControl.ClearProblemAndRestart();
-
-                 if (isFixed) //Si esta solucionado arregla la interfaz
-                 {
-                     SetUIState(oldGameState);
-                     currentGameState = oldGameState; //Asignar el estado del juego actual 
-                     oldGameState = GameState.SAFETYMODE; //Asignar el estado del juego anterior 
-
-                     if (isStarted)
-                         TargetManager.sharedInstance.ReStart(); //Reinicia el juego 
-
-                     //Envia el gameState en caso de ser necesario        
-                     RobotPlayerController.sharedInstance.modeControl.Auxiliar(TypeState.GAME_STATE);
-                 }*/
-                //state = true;
-            }
-
+                state = true;
 
             return state;
         }

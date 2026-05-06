@@ -108,11 +108,8 @@ namespace UIInterface
             }
 
             //Comprueba que debe salir de la pantalla de pausa
-            if (Input.GetKeyUp(KeyCode.Space))
-            {
-                //Solucionar el problema del robot                
-                state = true;
-            }
+            if (Input.GetKeyUp(KeyCode.Space))            
+                state = true;           
 
 
             return state;
