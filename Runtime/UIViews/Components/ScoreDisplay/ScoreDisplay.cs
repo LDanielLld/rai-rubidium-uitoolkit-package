@@ -111,9 +111,7 @@ namespace UIInterface
             mScore.AddToClassList(kAnimPulse);
             mScore.schedule.Execute(() =>
                 mScore.RemoveFromClassList(kAnimPulse)
-            ).StartingIn(100); //Delay de 0.1s    
-
-            mMaxScore.text = $"{template.contentRect.width} - {template.contentRect.height}";          
+            ).StartingIn(100); //Delay de 0.1s                       
         }
 
         /// <summary>
