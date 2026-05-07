@@ -25,7 +25,9 @@ namespace UIInterface
         #region Eventos de vistas
         public static Action<int,float> ScoreDisplayEvent; //Realiza una accion en el componente ScoreDisplay
         public static Action<int> StatEvent; //Realiza una accion en el componente Stats
-        public static Action<float> TimeProgressEvent; //Realiza una accion en el componente TimeProgress        
+
+        public static Action<bool> StateTimeProgress; //Conecta o desconecta el componente TimeProgress        
+        public static Action<float> ConfigureTimeProgress; //Configura el TimeProgress        
         #endregion
 
     }

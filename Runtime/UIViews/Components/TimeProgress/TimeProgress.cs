@@ -691,13 +691,19 @@ namespace UIInterface
         {
             //Se rellena la barra en un tiempo 
             float elapsed = 0f;
-            float duration = 0.5f; //Tiempo de duracion
+            float duration = 0.5f; //Tiempo de duracion            
+            
+            //Porcentaje que se encuentra relleno
+            float p = Mathf.InverseLerp(0f, 100f, progress);
+
+            //Actualiza duracion
+            duration *= (1f - p);
 
             //Ejecuta secuencia de animacion 
             var animation = mbProgress.schedule.Execute(() =>
             {
                 elapsed += Time.deltaTime;
-                float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+                float t = Mathf.SmoothStep(p, 1f, elapsed / duration);
 
                 //Aplica el valor
                 progress = Mathf.Lerp(0, 100, t);                   
