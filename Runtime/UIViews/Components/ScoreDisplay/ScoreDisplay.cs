@@ -93,10 +93,6 @@ namespace UIInterface
             else
                 mMaxScore.text = cscore.ToString("----");
 
-            VisualElement ds = template.Q("ScoreDisplay");
-            mMaxScore.text = $"{ds.contentRect.width} - {ds.contentRect.height}";
-
-
             //Adaptacion dinamica del tamaño de fuente
             BindAutoFontSize(mScore, template.Q("score__topsection"),0.85f);
             BindAutoFontSize(mMaxScore, template.Q("scoredisplay__panelinside"), 0.65f);
