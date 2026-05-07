@@ -22,9 +22,9 @@ namespace UIInterface
         #endregion
 
 
-
         #region Eventos de vistas
-        public static Action WarningAction; //Realiza una accion en la vista de warning        
+        public static Action<int,float> ScoreDisplayEvent; //Realiza una accion en el componente ScoreDisplay
+        public static Action<int> StatEvent; //Realiza una accion en el componente Stats
         #endregion
 
 

@@ -100,7 +100,7 @@ namespace UIInterface
             //Adaptacion dinamica del tamaño de fuente
             BindAutoFontSize(mScore, template.Q("score__topsection"),0.85f);
             BindAutoFontSize(mMaxScore, template.Q("scoredisplay__panelinside"), 0.65f);
-            BindAutoFontSize(mCombo, template.Q("score__topsection"), 0.45f);
+            BindAutoFontSize(mCombo, template.Q("score__topsection"), 0.35f);
         }
 
         /// <summary>
