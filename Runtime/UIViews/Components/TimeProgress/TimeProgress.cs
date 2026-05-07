@@ -691,7 +691,7 @@ namespace UIInterface
         {
             //Se rellena la barra en un tiempo 
             float elapsed = 0f;
-            float duration = 5.0f; //Tiempo de duracion
+            float duration = 0.5f; //Tiempo de duracion
 
             //Ejecuta secuencia de animacion 
             var animation = mbProgress.schedule.Execute(() =>
