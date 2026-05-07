@@ -60,6 +60,10 @@ namespace UIInterface
             UxmlBoolAttributeDescription mEnabledTextAttribute = new UxmlBoolAttributeDescription
             { name = "textenabled", defaultValue = true };
 
+            //Atributo de lanzamiento de animacion
+            UxmlBoolAttributeDescription mFillAnimAttribute = new UxmlBoolAttributeDescription
+            { name = "filling", defaultValue = false };
+
 
 
             // Utiliza el metodo Init para asignar el valor del atributo en el fichero UXML a la propiedad progress en C#.
@@ -84,6 +88,9 @@ namespace UIInterface
                 
                 //Visibilidad del texto
                 timeprogress.textenabled = mEnabledTextAttribute.GetValueFromBag(bag, cc); //Asigna visilidad
+
+                //Visibilidad del texto
+                timeprogress.isfilling = mFillAnimAttribute.GetValueFromBag(bag, cc); //Lanza animacion
             }
         }
 
@@ -263,6 +270,22 @@ namespace UIInterface
                     mLabel.style.visibility = Visibility.Hidden;               
             }
         }
+
+
+        /// <summary>
+        /// Activa animacion de relleno de barra de tiempo
+        /// </summary>
+        public bool isfilling
+        {
+            get => isFilling;
+            set 
+            {
+                isFilling = value;
+                if(isFilling) FillingAnimation();
+                isFilling = false;
+            }
+
+        }
         #endregion
 
         #region [Function] Variables
@@ -325,6 +348,8 @@ namespace UIInterface
         private float mValueCritic;
         private float mValueWarning;
 
+        //Animacion
+        private bool isFilling;
 
         //Elementos para la barra de progreso lineal
         private VisualElement mbProgress;
@@ -656,19 +681,31 @@ namespace UIInterface
 
         //*****************************Gestion de animaciones******************************//
         //*********************************************************************************//   
-        #region [Function] Animaciones dinamicas
-        float _radius = 0.0f;
+        #region [Function] Animaciones estaticas 
+       
         /// <summary>
-        /// Generacion de una animacion de pulso constante
+        /// Animacion para rellenar la barra de progreso
         /// </summary>
         /// <param name="timer"></param>
-        private void UpdateAnimation(TimerState timer)
+        private void FillingAnimation()
         {
-            // Oscilamos el radio entre 20 y 50 usando el tiempo
-            _radius = 50f + Mathf.Sin(Time.realtimeSinceStartup * 5f) * 15f;
+            //Se rellena la barra en un tiempo 
+            float elapsed = 0f;
+            float duration = 5.0f; //Tiempo de duracion
 
-            // FORZAMOS EL REDIBUJO DEL PAINTER2D
-            ReDrawAll();
+            //Ejecuta secuencia de animacion 
+            var animation = mbProgress.schedule.Execute(() =>
+            {
+                elapsed += Time.deltaTime;
+                float t = Mathf.SmoothStep(0f, 1f, elapsed / duration);
+
+                //Aplica el valor
+                progress = Mathf.Lerp(0, 100, t);                   
+                
+            }).Every(0); //Se ejecuta cada frame
+
+            animation.Until(() => elapsed >= duration);
+
         }
         #endregion
         //*********************************************************************************//
