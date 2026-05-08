@@ -63,13 +63,6 @@ namespace UIInterface
         private int nbRows = 9; //Numero de filas que aparecen como puntuaciones   
         private List<ScoreRow> rows = new List<ScoreRow>(); //Lista de las filas
         private int iRow = 0;
-
-        private string username = "Luisda";
-
-        //Simulacion de puntuaciones
-        private List<UserScoreData> topScores = new List<UserScoreData>();
-        private UserScoreData s;
-
         #endregion
         //*********************************************************************************//
         //*********************************************************************************//
@@ -110,51 +103,29 @@ namespace UIInterface
             mCountDownPanel = mTopElement.Q<VisualElement>("finishview-countdown-panel");
             mCountDown = mTopElement.Q<VisualElement>("finishview-countdown");
             mCountDownLbl = mTopElement.Q<Label>("finishview-countdown-sequence");
-            mCountDownLbl.text = $"{SEC_TO_EXIT}";//Establece valor de conteo inicial
-            
+            mCountDownLbl.text = $"{SEC_TO_EXIT}";//Establece valor de conteo inicial            
 
 
             //Configura los componentes visibles
             mPanel.style.visibility = Visibility.Hidden;
             mPanel.AddToClassList(anShrinkPanel);
             mSignal.style.visibility = Visibility.Visible;
-           
+        }
+
+        /// <summary>
+        /// Registra los eventos
+        /// </summary>
+        protected override void RegisterUICallbacks()
+        {
+            UIEvents.FillPanelScore += FillScorePanel;
+        }
 
 
-            //Simulacion de puntuaciones
-            s = new UserScoreData(0, 250);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 150);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 350);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 350);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 450);
-            topScores.Add(s);
-            s = new UserScoreData(0, 550);
-            topScores.Add(s);
-
-            
-            s = new UserScoreData(0, 650);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 50);
-            topScores.Add(s);
-
-            s = new UserScoreData(0, 750);
-            topScores.Add(s);
-
-            //Ordena las puntuaciones
-            topScores = topScores
-                .OrderByDescending(x => x.score)
-                .ThenBy(x => x.dateTime)
-                .Take(9).ToList();
-
+        /// <summary>
+        /// Rellena el panel de puntuacion con los datos que se proporcionan
+        /// </summary>
+        private void FillScorePanel(List<UserScoreData> topScores, string id, string username)
+        {
             //Establece tamaño relativo de una celda dependiendo de los que se quieren mostrar
             float height = 100f / nbRows;
 
@@ -167,10 +138,10 @@ namespace UIInterface
             //Crear las filas con las puntuaciones, y las esconde para hacer animacion de aparicion
             for (int i = 0; i < iRow; i++)
             {
-                ScoreRow row = AddRow(height, i, s.id, topScores[i]);
+                ScoreRow row = AddRow(height, i, id, topScores[i]);
                 rows.Add(row);
                 mPanelScore.Add(row); //Incorpora elemento
-            }            
+            }
         }
 
         /// <summary>
@@ -209,7 +180,7 @@ namespace UIInterface
                 }
             }
             return row;
-        }
+        }       
         #endregion
         //*********************************************************************************//
         //*********************************************************************************//
@@ -383,8 +354,9 @@ namespace UIInterface
             {
                 fireworks.Disconnect();
                 fireworks.Dispose();
-            }
-            //UIEvents.initCosas -= InitShinkLabel;
+            }            
+            
+            UIEvents.FillPanelScore -= FillScorePanel;
         }
         #endregion
         //*********************************************************************************//

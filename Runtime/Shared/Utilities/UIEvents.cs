@@ -34,5 +34,10 @@ namespace UIInterface
         public static Action<float> ConfigureTimeProgress; //Configura el TimeProgress        
         #endregion
 
+        #region Eventos de FinishView       
+        public static Action<List<UserScoreData>, string, string> FillPanelScore; //Para rellenar los paneles de puntuacion        
+        #endregion
+
+
     }
 }
