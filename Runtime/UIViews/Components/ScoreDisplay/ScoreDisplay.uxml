@@ -1,4 +1,4 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xmlns:rai="UIInterface" editor-extension-mode="False">
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" rai="UIInterface" editor-extension-mode="False">
     <Style src="project://database/Assets/Runtime/UIViews/Components/ScoreDisplay/ScoreDisplayStyle.uss?fileID=7433441132597879392&amp;guid=7375511ab4e19be4aa5bf746fdb9192e&amp;type=3#ScoreDisplayStyle" />
     <Style src="project://database/Assets/Runtime/UIViews/Components/StringIcon/StringIconStyle.uss?fileID=7433441132597879392&amp;guid=1c17d6caf45c03f4db46a6072c291934&amp;type=3#StringIconStyle" />
     <ui:VisualElement name="ScoreDisplay" picking-mode="Ignore" class="scoredisplay__frame">
@@ -12,6 +12,7 @@
             <ui:VisualElement name="score_downsection" class="scoredisplay__inner-panel">
                 <ui:VisualElement name="scoredisplay__panelinside" class="scoredisplay__panel-inside" />
                 <ui:VisualElement name="medalicon" picking-mode="Ignore" class="scoredisplay_icon" style="border-radius: 50%;" />
+                <ui:VisualElement name="score_space" style="width: 5%; height: 100%;" />
                 <ui:Label text=" 25,000" name="highscore-label" class="scoredisplay__text" style="font-size: 25px; color: rgb(189, 195, 199); height: 100%; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; -unity-text-align: middle-left;" />
             </ui:VisualElement>
         </ui:VisualElement>

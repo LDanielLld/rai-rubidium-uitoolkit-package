@@ -247,15 +247,28 @@ namespace UIInterface
                 timec += deltaTime;
                 if (timec > cTime) //Acaba la animacion de aparicion
                 {
-                    rows[iRow - 1].RemoveFromClassList(anShrinkRow);
+                    if (rows.Count > 0)
+                    {
+                        rows[iRow - 1].RemoveFromClassList(anShrinkRow);
 
-                    //Comprueba el actual para determinar si hay que activar los fuegos por el record
-                    if (rows[iRow - 1].isRecord)
-                        fireworks.Connect();
+                        //Comprueba el actual para determinar si hay que activar los fuegos por el record
+                        if (rows[iRow - 1].isRecord)
+                            fireworks.Connect();
 
-                    iRow--;
-                    timec = 0.0f;
-                    if (iRow <= 0)
+                        iRow--;
+                        timec = 0.0f;
+                        if (iRow <= 0)
+                        {
+                            cState = StateFinishView.SFV_FINISH;
+
+                            //Animacion de muestra del contador final
+                            mCountDownPanel.RemoveFromClassList(anFadePanel);
+
+                            //Animacion de giro
+                            RotationAnimation();
+                        }
+                    }
+                    else
                     {
                         cState = StateFinishView.SFV_FINISH;
 
@@ -264,6 +277,8 @@ namespace UIInterface
 
                         //Animacion de giro
                         RotationAnimation();
+
+                        timec = 0.0f;
                     }
                 }
             }
