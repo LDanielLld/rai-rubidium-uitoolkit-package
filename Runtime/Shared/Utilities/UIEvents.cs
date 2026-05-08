@@ -10,7 +10,7 @@ namespace UIInterface
     /// Clase delegada asociada a los eventos que se pueden producir durante el
     /// funcionamiento de la interfaz.
     /// Estos eventos son conceptuales determinador por una Action que permite
-    /// ejecutarlos desde cualquier lugar. Sustiuye los sharedIntance al ocupar
+    /// ejecutarlos desde cualquier lugar. Sustituye los sharedIntance al ocupar
     /// solo los metodos determinan los eventos.
     /// </summary>
     public static class UIEvents
@@ -23,7 +23,11 @@ namespace UIInterface
 
 
         #region Eventos de vistas
-        public static Action<int,float> ScoreDisplayEvent; //Realiza una accion en el componente ScoreDisplay
+        //Display de puntuaciones
+        public static Action<int> ScoreDisplayScore; //Actualiza la puntuacion en el componente ScoreDisplay
+        public static Action<int> ScoreDisplayHighScore; //Establece la puntuacion maxima
+        public static Action<float, float> ScoreDisplayCombo; //Establece condiciones de combo
+
         public static Action<int> StatEvent; //Realiza una accion en el componente Stats
 
         public static Action<bool> StateTimeProgress; //Conecta o desconecta el componente TimeProgress        
