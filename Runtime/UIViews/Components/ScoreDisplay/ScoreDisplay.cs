@@ -19,7 +19,6 @@ namespace UIInterface
 
         private Label mScore; //Etiqueta de la puntuacion actual
         private Label mCombo; //Etiqueta del combo
-        private Label mX; //Etiqueta x del combo
         private Label mMaxScore; //Etiqueta de la puntuacion maxima    
 
         public Gradient gradient; //Gradiente de colores para cambiar color
@@ -65,8 +64,7 @@ namespace UIInterface
             // Busca las partes del elemento ScoreDisplay           
             mScore = template.Q<Label>("score-label");
             mMaxScore = template.Q<Label>("highscore-label");            
-            mCombo = template.Q<Label>("combo-label");           
-            //mX = template.Q<Label>("shop-item__discount-price");            
+            mCombo = template.Q<Label>("combo-label");  
         }
         #endregion
         //*********************************************************************************//
@@ -84,14 +82,9 @@ namespace UIInterface
         public void Init(int cscore)
         {
             //Actualiza los textos de las puntuaciones        
-            mCombo.text = ""; //Primero desconectado con 1x            
-           // mX.text = ""; //Desconecta x      
+            mCombo.text = ""; //Primero desconectado con 1x                       
             mScore.text = "0"; //Inicializa puntuacion de sesion
-
-            if (cscore > 0)
-                mMaxScore.text = cscore.ToString("0");
-            else
-                mMaxScore.text = cscore.ToString("----");
+            mMaxScore.text = cscore.ToString("----");
 
             //Adaptacion dinamica del tamaño de fuente
             BindAutoFontSize(mScore, template.Q("score__topsection"),0.85f);
@@ -118,9 +111,12 @@ namespace UIInterface
         /// Actualiza la puntuacion mas alta
         /// </summary>
         /// <param name="score"></param>
-        public void UpdateHighScore(float score)
+        public void UpdateHighScore(int score)
         {
-            mMaxScore.text = $"{score.ToString("0.00")}";
+            if (score > 0)
+                mMaxScore.text = score.ToString("0");
+            else
+                mMaxScore.text = score.ToString("----");            
         }
         #endregion        
         //*********************************************************************************//
@@ -144,8 +140,7 @@ namespace UIInterface
             {
                 comboDisplay = 0f;
 
-                // Lanza animacion de desaparecer
-               // PlayFadeOut();
+                // Lanza animacion de desaparecer               
                 mCombo.AddToClassList(kAnimfade);
             }
             else if (Mathf.Abs(stepped - comboDisplay) > 0.001f) // Solo actualiza si ha cambiado
@@ -155,17 +150,15 @@ namespace UIInterface
 
                 //Actualizar texto
                 mCombo.text = $"x{(FormatNumber(comboDisplay + 1))}";
-                //mX.text = $"x";
+                
 
                 // Cambiar color según rango 
                 float t = combo / max; // normalizado 0–1
-                mCombo.style.color = gradient.Evaluate(t);
-               // mX.style.color = gradient.Evaluate(t);
+                mCombo.style.color = gradient.Evaluate(t);               
 
                 //Anima en funcion de si aparece o actualiza
                 if (wasZero)
-                    mCombo.RemoveFromClassList(kAnimfade);
-                //PlayFadeIn(); // Lanza animacion de aparecer
+                    mCombo.RemoveFromClassList(kAnimfade);                
                 else
                 {
                     // Aplica una animacion de pulso sobre el texto.
@@ -173,8 +166,7 @@ namespace UIInterface
                     mCombo.schedule.Execute(() =>
                         mCombo.RemoveFromClassList(kAnimPulse)
                     ).StartingIn(150); //Delay de 0.15s        
-                }
-                   // AnimateCombo(); //Pop visual
+                }                  
             }
         }
 
