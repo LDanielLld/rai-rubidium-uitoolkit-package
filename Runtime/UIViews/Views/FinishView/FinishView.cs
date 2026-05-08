@@ -132,8 +132,8 @@ namespace UIInterface
             //Asignar nombre de usuario
             lblUser.text = username;
 
-            //Cantidad de filas
-            iRow = topScores.Count();
+            //Cantidad de filas            
+            iRow = Mathf.Clamp(topScores.Count(), 0, nbRows);            
 
             //Crear las filas con las puntuaciones, y las esconde para hacer animacion de aparicion
             for (int i = 0; i < iRow; i++)
