@@ -27,8 +27,6 @@ namespace UIInterface
         const string kAnimfade = "scoredisplay_fade"; //Ocultar
         const string kAnimPulse = "scoredisplay_pulse"; //Pulso
 
-        //Registro de corutinas para que nose solapen las animaciones
-        private Coroutine popRoutine, fadeRoutine, scoreRoutine;
         private float comboDisplay = 0.0f; //Valor de combo mostrado en pantalla
 
         //Plantilla - Elemento central
@@ -79,12 +77,12 @@ namespace UIInterface
         /// Inicializa etiquetas del panel de puntuaciones
         /// </summary>
         /// <param name="cscore"></param>
-        public void Init(int cscore)
+        public void Init()
         {
             //Actualiza los textos de las puntuaciones        
             mCombo.text = ""; //Primero desconectado con 1x                       
             mScore.text = "0"; //Inicializa puntuacion de sesion
-            mMaxScore.text = cscore.ToString("----");
+            mMaxScore.text = "----";
 
             //Adaptacion dinamica del tamaño de fuente
             BindAutoFontSize(mScore, template.Q("score__topsection"),0.85f);
@@ -121,6 +119,7 @@ namespace UIInterface
         #endregion        
         //*********************************************************************************//
         //*********************************************************************************//
+
 
 
         //**********************Gestion visual del marcador de combo***********************//
