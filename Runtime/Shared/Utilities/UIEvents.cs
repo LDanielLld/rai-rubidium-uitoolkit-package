@@ -31,7 +31,7 @@ namespace UIInterface
         public static Action<int> StatEvent; //Realiza una accion en el componente Stats
 
         public static Action<bool> StateTimeProgress; //Conecta o desconecta el componente TimeProgress        
-        public static Action<float> ConfigureTimeProgress; //Configura el TimeProgress        
+        public static Func<float> GetTimeProgress; //Obtiene el tiempo actual de progreso        
         #endregion
 
         #region Eventos de FinishView       
