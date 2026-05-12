@@ -137,7 +137,18 @@ namespace UIInterface
             mGameView = gameView;
             mGameView.Initialize(root.Q<VisualElement>(kGameViewName));
             m_AllViews.Add(mGameView);
-        }        
+        }
+
+        /// <summary>
+        /// Deshabilita los eventos para limpiar garbage collection
+        /// </summary>
+        void OnDisable()
+        {
+            //Recorre los componentes y borra memoria
+            foreach (UIView view in m_AllViews)
+                view.Dispose();
+           
+        }
         #endregion
         //*********************************************************************************//
         //*********************************************************************************//
@@ -182,31 +193,6 @@ namespace UIInterface
         }
         #endregion
         //*********************************************************************************//
-        //*********************************************************************************//
-
-        
-
-        //*******************************Contador de frames********************************//
-        //*********************************************************************************//         
-        #region [Function] Gestion del contador de frames
-        /// <summary>
-        /// Activa o desactiva el contador de frames
-        /// </summary>            
-        public void FpsCounterToogle(bool state)
-        {
-            UIEvents.FpsCounterToggled?.Invoke(true);
-        }
-
-        /// <summary>
-        /// Establece el framerate objetivo del juego
-        /// </summary>
-        /// <param name="state"></param>
-        public void SetFpsFrameRate(bool state)
-        {
-            UIEvents.TargetFrameRateSet?.Invoke(-1);
-        }
-        #endregion
-        //*********************************************************************************//
-        //*********************************************************************************//        
+        //*********************************************************************************//       
     }
 }
