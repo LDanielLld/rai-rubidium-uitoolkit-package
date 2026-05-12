@@ -133,14 +133,35 @@ namespace UIInterface
             lblUser.text = username;
 
             //Cantidad de filas            
-            iRow = Mathf.Clamp(topScores.Count(), 0, nbRows);            
+            iRow = Mathf.Clamp(topScores.Count(), 0, nbRows);
 
-            //Crear las filas con las puntuaciones, y las esconde para hacer animacion de aparicion
-            for (int i = 0; i < iRow; i++)
+            //Comprueba si el registro actual está dentro de las primeras filas que se deben mostrar
+            int position = topScores.FindIndex(x => x.id == id);
+
+            if (position < iRow) //Si la puntuacion esta en los primeros registro, se muestra por orden normal
             {
-                ScoreRow row = AddRow(height, i, id, topScores[i]);
-                rows.Add(row);
-                mPanelScore.Add(row); //Incorpora elemento
+                //Crear las filas con las puntuaciones, y las esconde para hacer animacion de aparicion
+                for (int i = 0; i < iRow; i++)
+                {
+                    ScoreRow row = AddRow(height, i, id, topScores[i]);
+                    rows.Add(row);
+                    mPanelScore.Add(row); //Incorpora elemento
+                }
+            }
+            else //Si no aparece en la lista, eso es que se ha registrado fuera, por lo tanto se pone al final
+            {
+                //Primero se colocan las 8 primeras.               
+                for (int i = 0; i < iRow; i++)
+                {
+                    ScoreRow row = AddRow(height, i, id, topScores[i]);
+                    rows.Add(row);
+                    mPanelScore.Add(row); //Incorpora elemento
+                }
+
+                //En ultima posicion se pone la actual pero actualizando el numero de fila
+                ScoreRow cRow = AddRow(height, position, id, topScores[position]);
+                rows.Add(cRow);
+                mPanelScore.Add(cRow); //Incorpora elemento
             }
         }
 
