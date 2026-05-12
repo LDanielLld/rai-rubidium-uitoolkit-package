@@ -151,7 +151,7 @@ namespace UIInterface
             else //Si no aparece en la lista, eso es que se ha registrado fuera, por lo tanto se pone al final
             {
                 //Primero se colocan las 8 primeras.               
-                for (int i = 0; i < iRow; i++)
+                for (int i = 0; i < iRow - 1; i++)
                 {
                     ScoreRow row = AddRow(height, i, id, topScores[i]);
                     rows.Add(row);
