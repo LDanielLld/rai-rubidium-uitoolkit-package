@@ -12,8 +12,7 @@ namespace UIInterface
     {
         STARTING, //Al inicio    
         INGAME, //Realizacion del juego    
-        FINISH, //Finalizacion
-        SCORE, //Muestra datos en una tabla
+        FINISH, //Finalizacion        
         SAFETYMODE, //Modo seguro
         PAUSE, //Modo pausa
         NONE
