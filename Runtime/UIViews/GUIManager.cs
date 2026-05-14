@@ -83,9 +83,18 @@ namespace UIInterface
         /// </summary>
         private void Start()
         {
+            
+        }
+
+        /// <summary>
+        /// Inicializa el gestor de interfaces
+        /// </summary>
+        public void Init()
+        {
             m_MainMenuDocument = GetComponent<UIDocument>();
             SetupViews();
         }
+
 
         /// <summary>
         /// Inicializa las vistas de la interfaz
