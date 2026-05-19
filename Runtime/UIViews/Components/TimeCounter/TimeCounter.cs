@@ -249,10 +249,10 @@ namespace UIInterface
                 float threshold = label.resolvedStyle.transitionDuration.First().value;
 
                 //Actualiza umbral de los digitos
-                horaDecena.Threshold = threshold;
-                horaUnidad.Threshold = threshold;
-                minDecena.Threshold = threshold;
-                minUnidad.Threshold = threshold;
+                if (horaDecena != null) horaDecena.Threshold = threshold;
+                if (horaUnidad != null) horaUnidad.Threshold = threshold;
+                if (minDecena != null) minDecena.Threshold = threshold;
+                if (minUnidad != null) minUnidad.Threshold = threshold;
                 segDecena.Threshold = threshold;
                 segUnidad.Threshold = threshold;
             });                       
