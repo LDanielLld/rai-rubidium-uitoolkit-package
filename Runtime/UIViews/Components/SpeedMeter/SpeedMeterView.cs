@@ -74,6 +74,9 @@ public class SpeedMeterView
         //Obtiene posicion actual
         rSpeed = m * current + offset;
 
+        //Filtra valores para que no sobrepasen los limites
+        rSpeed = Mathf.Clamp(rSpeed, limitAngle[0], limitAngle[1]);
+
         //Coloca el marcador en esa posicion
         mNeedle.style.rotate = new StyleRotate(new Rotate(rSpeed));
 
