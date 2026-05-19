@@ -22,7 +22,10 @@ namespace UIInterface
         //Digitos del contador
         private Digit segUnidad, segDecena;
         private Digit minUnidad, minDecena;
-        private Digit horaUnidad, horaDecena;       
+        private Digit horaUnidad, horaDecena;
+
+        //Tipo de contador (segundos,minutos u horas)
+        private TypeTime typeCounter = TypeTime.NONE;
 
         //Nombres de las etiquetas
         private string[] mLabelsName = new string[] //Nombres de todas las etiquetas
@@ -30,7 +33,17 @@ namespace UIInterface
             "digit-hour-decena-current", "digit-hour-decena-next", "digit-hour-unidad-current", "digit-hour-unidad-next",
             "digit-min-decena-current", "digit-min-decena-next", "digit-min-unidad-current", "digit-min-unidad-next",
             "digit-sec-decena-current", "digit-sec-decena-next", "digit-sec-unidad-current", "digit-sec-unidad-next",
-        };       
+        };
+
+        //Nombres de los componentes con digitos - Por si hay que reestructurar
+        private string[] mDigitPanelName = new string[]
+        {
+            "timedisplay__hour-component", "timedisplay__minu-component", "timedisplay__secnd-component"
+        };
+        private string[] mSepararorName = new string[] //Nombre de separadores
+        {
+            "separator_point-hour-minute", "separator_point-minute-second"
+        };
 
         //Plantilla - Elemento central
         private VisualElement template;
@@ -47,10 +60,11 @@ namespace UIInterface
         /// Constructor de la clase
         /// </summary>
         /// <param name="tmpl"></param>
-        public TimeCounter(VisualElement tmpl) 
+        public TimeCounter(VisualElement tmpl, TypeTime typc)
         {
-            template = tmpl;            
-            SetVisualElements();     
+            template = tmpl;
+            typeCounter = typc;
+            SetVisualElements();
         }
         #endregion
 
@@ -62,21 +76,24 @@ namespace UIInterface
         public void SetVisualElements()
         {
             //Inicializa contender
-            VisualElement mContainer = template.Q <VisualElement>("statdisplay__container-text"); //Contenedor
+            VisualElement mContainer = template.Q<VisualElement>("statdisplay__container-text"); //Contenedor
 
             //Inicializa array de labels  
             //[Hora Decena Actual, Hora Decena Next, Hora Unidad Actual, Hora Unidad Next]                         
             Label[] mLabelComp = new Label[mLabelsName.Length];
+
+
             // Busca las etiquetas del componente
             for (int i = 0; i < mLabelsName.Length; i++)
             {
                 mLabelComp[i] = template.Q<Label>(mLabelsName[i]);
+
                 //Actualizacion de tamaño de letra
                 Extension.BindAutoFontSize(mLabelComp[i], mContainer, 0.60f);
             }
 
             //Actualiza tamaño de icono
-            StringIcon mIcon = template.Q<StringIcon>("timedisplay-icon");            
+            StringIcon mIcon = template.Q<StringIcon>("timedisplay-icon");
             Extension.BindAutoIconSize(mIcon, mContainer, 0.75f);
 
             //Actualiza tamaño de separador de puntos
@@ -84,17 +101,51 @@ namespace UIInterface
             Extension.BindAutoFontSize(separator1, mContainer, 0.50f);
             Label separator2 = template.Q<Label>("separator_point-hour-minute");
             Extension.BindAutoFontSize(separator2, mContainer, 0.50f);
-            
 
-            // Mapea los 6 módulos a sus Frames del UXML
+
+            // Mapea los módulos de segundos a sus Frames del UXML
             segUnidad = new Digit(mLabelComp[10], mLabelComp[11], "timedisplay");
             segDecena = new Digit(mLabelComp[8], mLabelComp[9], "timedisplay"); // Segundos llegan a 59
 
-            minUnidad = new Digit(mLabelComp[6], mLabelComp[7], "timedisplay");
-            minDecena = new Digit(mLabelComp[4], mLabelComp[5], "timedisplay"); // Minutos llegan a 59
+            if (typeCounter == TypeTime.SECONDS) //Solo añade segundos
+            {
+                template.Q<VisualElement>(mDigitPanelName[0]).style.visibility = Visibility.Hidden; //Esconde horas
+                template.Q<VisualElement>(mDigitPanelName[1]).style.visibility = Visibility.Hidden; // y minutos
+                template.Q<VisualElement>(mSepararorName[0]).style.visibility = Visibility.Hidden; //Esconde puntos horas-minutos
+                template.Q<VisualElement>(mSepararorName[1]).style.visibility = Visibility.Hidden; //Esconde puntos minutos-segundos
 
-            horaUnidad = new Digit(mLabelComp[2], mLabelComp[3], "timedisplay");
-            horaDecena = new Digit(mLabelComp[0], mLabelComp[1], "timedisplay"); // Horas llegan a 24 máxim           
+                //Redistribuye los paneles
+                template.Q<VisualElement>(mDigitPanelName[0]).style.width = new Length(0.0f, LengthUnit.Percent);
+                template.Q<VisualElement>(mDigitPanelName[1]).style.width = new Length(0.0f, LengthUnit.Percent);
+                template.Q<VisualElement>(mDigitPanelName[2]).style.width = new Length(100f, LengthUnit.Percent);
+                template.Q<VisualElement>(mSepararorName[0]).style.width = new Length(0, LengthUnit.Percent);
+                template.Q<VisualElement>(mSepararorName[1]).style.width = new Length(0, LengthUnit.Percent);
+
+            }
+            else if (typeCounter == TypeTime.MINUTES) //Añade minutos y segundos
+            {
+                template.Q<VisualElement>(mDigitPanelName[0]).style.visibility = Visibility.Hidden; //Esconde horas
+                template.Q<VisualElement>(mSepararorName[0]).style.visibility = Visibility.Hidden; //Esconde puntos horas-minutos                
+
+                //Redistribuye los paneles
+                template.Q<VisualElement>(mDigitPanelName[0]).style.width = new Length(0.0f, LengthUnit.Percent);
+                template.Q<VisualElement>(mDigitPanelName[1]).style.width = new Length(47.5f, LengthUnit.Percent);
+                template.Q<VisualElement>(mDigitPanelName[2]).style.width = new Length(47.5f, LengthUnit.Percent);
+                template.Q<VisualElement>(mSepararorName[0]).style.width = new Length(0, LengthUnit.Percent);
+
+                // Mapea los módulos de minutos y horas a sus Frames del UXML
+                minUnidad = new Digit(mLabelComp[6], mLabelComp[7], "timedisplay");
+                minDecena = new Digit(mLabelComp[4], mLabelComp[5], "timedisplay"); // Minutos llegan a 59
+            }
+            else if (typeCounter == TypeTime.HOURS) //Añade todos los digitos
+            {
+                // Mapea los módulos de minutos y horas a sus Frames del UXML
+                minUnidad = new Digit(mLabelComp[6], mLabelComp[7], "timedisplay");
+                minDecena = new Digit(mLabelComp[4], mLabelComp[5], "timedisplay"); // Minutos llegan a 59
+
+                horaUnidad = new Digit(mLabelComp[2], mLabelComp[3], "timedisplay");
+                horaDecena = new Digit(mLabelComp[0], mLabelComp[1], "timedisplay"); // Horas llegan a 24 máxim  
+            }
 
             //Registrar tiempo de animacion
             RegisterTimeAnimation(mLabelComp[0]);
@@ -121,11 +172,17 @@ namespace UIInterface
             segUnidad.Init(seconds % 10, type, TypeAnim.ROLLING_DRUM);
             segDecena.Init(seconds / 10, type, TypeAnim.ROLLING_DRUM);
 
-            minUnidad.Init(minutes % 10, type, TypeAnim.ROLLING_DRUM);
-            minDecena.Init(minutes / 10, type, TypeAnim.ROLLING_DRUM);
+            if (minDecena != null && minUnidad != null)
+            {
+                minUnidad.Init(minutes % 10, type, TypeAnim.ROLLING_DRUM);
+                minDecena.Init(minutes / 10, type, TypeAnim.ROLLING_DRUM);
+            }
 
-            horaUnidad.Init(hours % 10, type, TypeAnim.ROLLING_DRUM);
-            horaDecena.Init(hours / 10, type, TypeAnim.ROLLING_DRUM);
+            if (horaUnidad != null && horaDecena != null)
+            {
+                horaUnidad.Init(hours % 10, type, TypeAnim.ROLLING_DRUM);
+                horaDecena.Init(hours / 10, type, TypeAnim.ROLLING_DRUM);
+            }
         }
         #endregion
         //*********************************************************************************//
@@ -154,18 +211,24 @@ namespace UIInterface
 
             //Calculo matematico del tiempo a partir de los segundos
             int hours = (int)(secondsTotal / 3600f);
-            int minutes = (int)((secondsTotal % 3600) / 60f) ;
+            int minutes = (int)((secondsTotal % 3600) / 60f);
             int seconds = (int)(secondsTotal % 60f);
 
             // Actualiza cada rueda con su número correspondiente
             segUnidad.Set(seconds % 10, deltaTime);
             segDecena.Set(seconds / 10, deltaTime);
 
-            minUnidad.Set(minutes % 10, deltaTime);
-            minDecena.Set(minutes / 10, deltaTime);
-        
-            horaUnidad.Set(hours % 10, deltaTime);
-            horaDecena.Set(hours / 10, deltaTime);
+            if (minDecena != null && minUnidad != null)
+            {
+                minUnidad.Set(minutes % 10, deltaTime);
+                minDecena.Set(minutes / 10, deltaTime);
+            }
+
+            if (horaUnidad != null && horaDecena != null)
+            {
+                horaUnidad.Set(hours % 10, deltaTime);
+                horaDecena.Set(hours / 10, deltaTime);
+            }
         }
         #endregion
         //*********************************************************************************//

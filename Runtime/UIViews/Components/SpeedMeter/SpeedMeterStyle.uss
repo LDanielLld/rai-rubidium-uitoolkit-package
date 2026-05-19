@@ -1,0 +1,16 @@
+.speedmeter_background {
+    width: 100%;
+    height: 100%;
+    background-image: url('project://database/Assets/com.rai.guitoolkit/Runtime/Scripts/UI/Components/SpeedMeter/Textures/speedmeter.png?fileID=2800000&guid=e44f47ca08b336a47a535e36b2c898a0&type=3#speedmeter');
+}
+
+.speedmeter_needle {
+    width: 17%;
+    height: 45%;
+    background-image: url('project://database/Assets/com.rai.guitoolkit/Runtime/Scripts/UI/Components/SpeedMeter/Textures/needle.png?fileID=2800000&guid=d2f971cfc37c8684db17a5678a8d76d6&type=3#needle');
+    position: absolute;
+    left: 41.65%;
+    bottom: 41%;
+    transform-origin: center 80%;
+    rotate: 0;
+}

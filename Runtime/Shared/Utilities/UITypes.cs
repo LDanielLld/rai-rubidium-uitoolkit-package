@@ -25,7 +25,8 @@ namespace UIInterface
     {
         SECONDS, //Solo se muestran segundos
         MINUTES, //Se muestran minutos y segundos
-        HOURS //Se muestran horas, minutos y segundos
+        HOURS, //Se muestran horas, minutos y segundos
+        NONE
     }
 
     /// <summary>
