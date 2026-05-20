@@ -101,6 +101,9 @@ namespace UIInterface
                         SEC_TO_START--;
                         timer = 0.0f;
                         UpdateVisuals();
+
+                        //Lanza sonido para indicar paso del tiempo
+                        UIEvents.SoundEndStartView?.Invoke();
                     }
                 }
                 else //Acaba la cuenta atras y muestra el mensaje de Empieza
@@ -114,6 +117,9 @@ namespace UIInterface
                         mPanel.AddToClassList(anExpandPanel); //Expande el panel
                         mSequence.text = "¡EMPIEZA!";
                         mSequence.RemoveFromClassList(anShringText);
+
+                        //Lanza sonido para finalizar vista
+                        UIEvents.SoundEndStartView?.Invoke();
                     }).StartingIn(150);
 
                     timer = 0.0f;
