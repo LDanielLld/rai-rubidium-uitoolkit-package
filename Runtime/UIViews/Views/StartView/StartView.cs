@@ -70,7 +70,9 @@ namespace UIInterface
             //Añade estilos a los elementos de la interfaz
             mPanel = mTopElement.Q<VisualElement>("countdown-panel");
             mSequence = mTopElement.Q<Label>("countdown-sequence");
-            mSequence.text = $"{SEC_TO_START}";//Establece valor de conteo inicial
+
+            //Establece valor de conteo inicial
+            UpdateSeconds();
         }
         #endregion
         //*********************************************************************************//
@@ -100,10 +102,7 @@ namespace UIInterface
                     {
                         SEC_TO_START--;
                         timer = 0.0f;
-                        UpdateVisuals();
-
-                        //Lanza sonido para indicar paso del tiempo
-                        UIEvents.SoundInitStartView?.Invoke();
+                        UpdateVisuals();                        
                     }
                 }
                 else //Acaba la cuenta atras y muestra el mensaje de Empieza
@@ -142,7 +141,7 @@ namespace UIInterface
         {
             if (SEC_TO_START > 0)
             {
-                mSequence.text = $"{SEC_TO_START}";
+                UpdateSeconds();
                 // Efecto de pulso usando una corrutina rápida
                 mSequence.AddToClassList(anPulseText);
                 //Aplica una animacion de pulso sobre el texto.
@@ -153,13 +152,15 @@ namespace UIInterface
         }
 
         /// <summary>
-        /// Aplica animacion de contraccion y expansion
+        /// Actualiza los segundos de la cuenta atras
         /// </summary>
-       /* public void InitShinkLabel()
+        private void UpdateSeconds()
         {
-            mPanel.AddToClassList(anExpandPanel);
-            mSequence.RemoveFromClassList(anShringText);
-        }*/
+            mSequence.text = $"{SEC_TO_START}";
+
+            //Lanza sonido para indicar paso del tiempo
+            UIEvents.SoundInitStartView?.Invoke();
+        }
         #endregion
         //*********************************************************************************//
         //*********************************************************************************//
