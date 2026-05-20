@@ -20,13 +20,11 @@ namespace UIInterface
         private enum StateStartView
         {
             SSV_INITIALIZE, //Inicializa visualemente la etiqueta
-            SSV_COUNTDOWN, //Cuenta atras,
-            SSV_STARTING, //Señal de empezar
-            SSV_PAUSE, //Indica pausa
+            SSV_COUNTDOWN, //Cuenta atras,            
             SSV_ANIMATE_STARTING //Aanimacion de cambio
         }
 
-        private StateStartView cState = StateStartView.SSV_COUNTDOWN; //Empieza con la cuenta atras
+        private StateStartView cState = StateStartView.SSV_INITIALIZE; //Empieza con la cuenta atras
 
         // Elementos visuales
         VisualElement mPanel; //Panel de secuencia
@@ -69,10 +67,7 @@ namespace UIInterface
             base.SetVisualElements();
             //Añade estilos a los elementos de la interfaz
             mPanel = mTopElement.Q<VisualElement>("countdown-panel");
-            mSequence = mTopElement.Q<Label>("countdown-sequence");
-
-            //Establece valor de conteo inicial
-            UpdateSeconds();
+            mSequence = mTopElement.Q<Label>("countdown-sequence");          
         }
         #endregion
         //*********************************************************************************//
@@ -93,7 +88,12 @@ namespace UIInterface
             bool state = false;           
 
             //Maquina de estados para controla flujo de estados
-            if (cState == StateStartView.SSV_COUNTDOWN)
+            if(cState == StateStartView.SSV_INITIALIZE)
+            {
+                UpdateSeconds();
+                cState = StateStartView.SSV_COUNTDOWN; 
+            }
+            else if (cState == StateStartView.SSV_COUNTDOWN)
             {
                 if (SEC_TO_START > 0) //Está en la cuenta atras
                 {
@@ -174,8 +174,7 @@ namespace UIInterface
         /// </summary>
         public override void Dispose()
         {
-            base.Dispose();
-            //UIEvents.initCosas -= InitShinkLabel;
+            base.Dispose();            
         }
         #endregion
         //*********************************************************************************//
