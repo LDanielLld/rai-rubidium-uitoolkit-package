@@ -270,17 +270,22 @@ namespace UIInterface
                 {
                     if (rows.Count > 0)
                     {
+                        //Invoca algo, si no es nulo
+                        UIEvents.SoundPanelScore?.Invoke();
+
                         rows[iRow - 1].RemoveFromClassList(anShrinkRow);
 
                         //Comprueba el actual para determinar si hay que activar los fuegos por el record
                         if (rows[iRow - 1].isRecord)
+                        {
                             fireworks.Connect();
+                            UIEvents.FireworksPanelScore?.Invoke();
+                        }
 
                         iRow--;
                         timec = 0.0f;
 
-                        //Invoca algo, si no es nulo
-                        UIEvents.SoundPanelScore?.Invoke();
+                        
 
                         if (iRow <= 0)
                         {
@@ -396,7 +401,7 @@ namespace UIInterface
                 fireworks.Dispose();
             }            
             
-            UIEvents.FillPanelScore -= FillScorePanel;
+            UIEvents.FillPanelScore -= FillScorePanel;            
         }
         #endregion
         //*********************************************************************************//
