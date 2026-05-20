@@ -103,7 +103,7 @@ namespace UIInterface
                         UpdateVisuals();
 
                         //Lanza sonido para indicar paso del tiempo
-                        UIEvents.SoundEndStartView?.Invoke();
+                        UIEvents.SoundInitStartView?.Invoke();
                     }
                 }
                 else //Acaba la cuenta atras y muestra el mensaje de Empieza
