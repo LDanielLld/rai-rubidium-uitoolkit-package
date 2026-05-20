@@ -278,6 +278,10 @@ namespace UIInterface
 
                         iRow--;
                         timec = 0.0f;
+
+                        //Invoca algo, si no es nulo
+                        UIEvents.SoundPanelScore?.Invoke();
+
                         if (iRow <= 0)
                         {
                             cState = StateFinishView.SFV_FINISH;
