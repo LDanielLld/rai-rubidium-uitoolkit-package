@@ -26,14 +26,31 @@ El paquete esta organizado en componentes independientes. Cada componente tiene 
 1. Abre Window->Package Manager
 2. Clic en + y Add package from git URL...
 3. Introduce:
-https://github.com/tuusuario/mi-fireworks-package.git#1.0.0
+https://github.com/RAI-UMH/rai-rubidium-games-score.git
 
 ## Configuracion inicial
 
-### 1. Crear la capa Fireworks
+### 1. Inicializacion de los componentes de la interfaz
 
-- Edit Project Settings  Tags and Layers**
-- En **User Layer 6** escribe `Fireworks`
+- En el proyecto de Unity se crea la carpeta Assets/UI donde se incorporan todos los componentes
+  que se van a utilizar en la interfaz de la actividad implementada
+  > [!NOTE]
+  > Cada actividad puede tener diferentes compontes. Depende del diseño y los objetivos del juego.
+- Copiar los archivos de estilo de los elementos y la interfaz general desde los siguientes directorios:
+  1. El archivo UIInterface.uxml representa toda la interaz del sistema y se copia desde GUIToolkit/Runtime/UIViews/.
+     Este elemento recolecta los bloques de interfaz que se mostrarán en los diferentes estados del juego: Inicio, juego, pausa, warning y finalizacion.     
+  2. La unica vista que hay que modificar de UIInterface.uxml es la que se muestra durente la fase de juego. Por lo tanto,
+     se añade GameView.cs y GameView.uxml.
+  3. Los componentes individuales se extraen desde sus respectivas carpetas en GUIToolkit/Runtime/UIViews/Components. 
+     Estos elementos se utilizarán para configurar el fichero GameView.uxml
+- Se colocan en la carpeta Assets para tener estos componentes visibles en el UIBuilder.
+
+### 2. Crear gestor de la interfaz
+
+- Crea un GameObject con los componentes GUIManager y UIDocument
+- UIDocument es el encargado de renderizar la interfaz junto a sus componentes de la libreria
+  1. En Panel Settings se vincula el asset: GUIToolkit/Runtime/Shared/PanelSettings/UISettings.asset
+  2. En Source Asset se incorpora el script de plantilla con el diseño planteado: UI/UIInterface.uxml
 
 ### 2. Crear el tag de explosiones
 
@@ -64,7 +81,7 @@ Crea tres Prefabs de ParticleSystem en `Assets/Resources/Prefabs/:
 | Trail.prefab | Mobile/Particles/Additive |
 | Explosion.prefab | Mobile/Particles/Additive |
 
-Asi�gnalos en el Inspector del componente **FireworksRT**.
+Asi�gnalos en el Inspector del componente **FireworksRT**.
 
 ## Uso
 
@@ -83,6 +100,37 @@ Asi�gnalos en el Inspector del componente **FireworksRT**.
 
 ## Estructura del package
 
+## Estructura del directorio
+
+```
+GUIToolkit/
+├── Runtime/                         # Carpeta con los datos brutos de BCI2000. Debe llamarse _data_
+│   ├── Shared/
+│   │   ├── Fonts/
+│   │   │   ├── *.otf                # Archivo CSV con los datos de los usuarios del estudio
+│   │   │   └── *.assets             # Archivo CSV con los datos de los usuarios del estudio
+│   │   ├── PanelSettings/
+│   │   │   ├── *.assets                # Archivo CSV con los datos de los usuarios del estudio
+│   │   │   └── Themes/
+│   │   │       ├── *.tss                # Archivo CSV con los datos de los usuarios del estudio
+│   │   │       └── ThemesStyles/
+│   │   │           └── *.uss
+│   │   ├── Styles/
+│   │   │   └── *.uss             # Archivo CSV con los datos de los usuarios del estudio
+│   │   └── Utilities/
+│   │       └── *.cs             # Archivo CSV con los datos de los usuarios del estudio
+│   └── UIViews
+│   │   ├── Components/
+│   │   └── Views/
+├── _out/                           # Almacena las figuras generadas al procesar los datos
+│   ├── figures/
+│   └── ...
+├── log/                            # Almacena archivos log del procesamiento
+│   ├── .main_process_dt.log
+│   └── .main_process_parfor.log
+├── addpath/                           # Scripts de Matlab para el procesamiento
+└── workspace.m                     # Script para organizar y ordenar el procesamiento de los datos.
+```
 
 Runtime/
 FireworksRT.cs          Script principal

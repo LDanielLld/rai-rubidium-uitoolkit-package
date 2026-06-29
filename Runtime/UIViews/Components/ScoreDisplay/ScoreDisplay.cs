@@ -26,6 +26,7 @@ namespace UIInterface
         // Selectores de estilos
         const string kAnimfade = "scoredisplay_fade"; //Ocultar
         const string kAnimPulse = "scoredisplay_pulse"; //Pulso
+        private bool isAnimated = true; //Flag para indiciar si se realiza animacion
 
         private float comboDisplay = 0.0f; //Valor de combo mostrado en pantalla
 
@@ -82,13 +83,18 @@ namespace UIInterface
             //Actualiza los textos de las puntuaciones        
             mCombo.text = ""; //Primero desconectado con 1x                       
             mScore.text = "0"; //Inicializa puntuacion de sesion
-            mMaxScore.text = "----";
+            mMaxScore.text = "----";            
 
             //Adaptacion dinamica del tamaño de fuente
             BindAutoFontSize(mScore, template.Q("score__topsection"),0.85f);
             BindAutoFontSize(mMaxScore, template.Q("scoredisplay__panelinside"), 0.65f);
             BindAutoFontSize(mCombo, template.Q("score__topsection"), 0.35f);
         }
+
+        /// <summary>
+        /// Actualiza la realizacion de aniomacion de incremento de puntuacion
+        /// </summary>
+        public void IsAnimated(bool state) => isAnimated = state;
 
         /// <summary>
         /// Actualiza la puntuacion actual de sesion y realiza una animacion
@@ -98,11 +104,14 @@ namespace UIInterface
         {
             mScore.text = $"{score}";
 
-            // Aplica una animacion de pulso sobre el texto.
-            mScore.AddToClassList(kAnimPulse);
-            mScore.schedule.Execute(() =>
-                mScore.RemoveFromClassList(kAnimPulse)
-            ).StartingIn(100); //Delay de 0.1s                       
+            // Aplica una animacion de pulso sobre el texto si es necesario
+            if (isAnimated)
+            {
+                mScore.AddToClassList(kAnimPulse);
+                mScore.schedule.Execute(() =>
+                    mScore.RemoveFromClassList(kAnimPulse)
+                ).StartingIn(100); //Delay de 0.1s                       
+            }
         }
 
         /// <summary>
