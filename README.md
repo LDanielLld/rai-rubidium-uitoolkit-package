@@ -45,53 +45,56 @@ https://github.com/RAI-UMH/rai-rubidium-games-score.git
      Estos elementos se utilizarán para configurar el fichero GameView.uxml
 - Se colocan en la carpeta Assets para tener estos componentes visibles en el UIBuilder.
 
-### 2. Añadir interfaz a la escena
+### 2. Preparacion de componentes
+
+- En el UIBuilder se configura el archivo GameView.uxml añadiendo componentes visuales de la libreria.
+- Incorpora la vista GameView.uxml dentro del archivo de plantilla UIInterface.uxml tambien desde el UIBuilder
+  1. Establece `Size` a 100% en `Width` y `Height`.
+  2. Establece `Display` en **None**. 
+- Modifica el archivo GameView.cs para inicializar y configurar los componentes, asi como registrar los eventos para la actualización de estos componentes visuales.
+
+### 3. Añadir interfaz a la escena
 
 - Crea un GameObject y nombralo **GUIManager**
 - Añade el componente `UIDocument`para renderizar la interfaz junto a sus componentes de la libreria
   1. En Panel Settings se vincula el asset: GUIToolkit/Runtime/Shared/PanelSettings/UISettings.asset
   2. En Source Asset se incorpora el script de plantilla con el diseño planteado: UI/UIInterface.uxml
 
+### 5. Uso y actualización de componentes
 
-### 5. Prefabs de particulas
+Los componentes se utilizan y actualizan desde cualquier script dentro del juego, haciendo uso de los eventos registrados en GameView.
+  - Ejemplo: UIEvents.SoundEndStartView?.Invoke();
+En la siguiente tabla se muestran los eventos que se pueden registrar: 
 
-Crea tres Prefabs de ParticleSystem en `Assets/Resources/Prefabs/:
-
-| Prefab | Shader recomendado |
-|---|---|
-| Rocket.prefab | Mobile/Particles/Additive |
-| Trail.prefab | Mobile/Particles/Additive |
-| Explosion.prefab | Mobile/Particles/Additive |
-
-Asi�gnalos en el Inspector del componente **FireworksRT**.
-
-## Uso
-
-| Accion | Resultado |
-|---|---|
-| Clic en el cielo | Lanza un cohete hacia ese punto |
-| Slider Particulas | Numero de chispas por explosion |
-| Slider Gravedad | Intensidad de la caída |
-| Slider Velocidad | Fuerza de lanzamiento |
-| Slider Dispersion | Apertura lateral de los cohetes |
-| Slider Cadencia | Tiempo entre lanzamientos automaticos |
-| Slider Cola | Duracion de la estela del cohete |
-| Aleatorio / Dorado / Arcoiris | Paleta de colores |
-| Modo Automatico | Lanza cohetes solos |
-| Limpiar | Borra todo de la pantalla |
+| Componente | Evento | Resultado |
+|---|---|---|
+| FpsCounter   | FpsCounterToggled     | Actualiza la puntuacion general |
+|              | TargetFrameRateSet    | Numero de chispas por explosion |
+| ScoreDisplay | ScoreDisplayScore     | Actualiza la puntuacion general del componente |
+|              | ScoreDisplayHighScore | Establece la puntuacion maxima |
+|              | ScoreDisplayCombo     | Establece condiciones de combo |
+| Stat         | StatEvent             | Incrementa o decrementa valores numéricos |
+| TimeProgress | StateTimeProgress     | Conecta o desconecta el componente |
+|              | GetTimeProgress       | Obtiene el tiempo actual de progreso |
+| SpeedMeter   | SpeedMeterEvent       | Establece la velocidad |
+| StartView    | SoundInitStartView    | Lanza sonido en cada cambio de la cuenta atras|
+|              | SoundInitStartView    | Lanza sonido final de la cuenta atras |
+| FinishView   | FillPanelScore        | Rellena el panel de puntuación |
+|              | SoundPanelScore       | Genera un sonuido al aparecer cada registro |
+|              | FireworksPanelScore   | Activa los fuegos artificiales |
 
 ## Estructura del package
 
 ```
 GUIToolkit/
-└── Runtime/                         # Carpeta con los datos brutos de BCI2000. Debe llamarse _data_
-    ├── Shared/
-    │   ├── Fonts/o
-    │   ├── PanelSettings/
-    │   │   └── Themes/
-    │   │       └── ThemesStyles/
-    │   ├── Styles/
-    │   └── Utilities/
+└── Runtime/                         # Carpeta con todos los componentes de la libreria GUIToolkit
+    ├── Shared/                      # Elemnentos que pueden compartir parte de los componentes
+    │   ├── Fonts/                   # Fuentes de texto     
+    │   ├── PanelSettings/           # Configuracion de la interfaz
+    │   │   └── Themes/              # Tema de la interfaz
+    │   │       └── ThemesStyles/    # Estilo del tema de la interfaz
+    │   ├── Styles/                  # Estilos compartidos
+    │   └── Utilities/               # Utilidades donde se procesan diferentes eventos
     └── UIViews
         ├── Components/              # Componentes que forman parte de las vistas de estado
         │   ├── Digit/               # Control de digitos numericos
@@ -108,7 +111,7 @@ GUIToolkit/
         │   ├── SpeedMeter/          # Velocimetro animado
         │   │   └── Textures/        
         │   ├── Stat/                # Marcador con alguna caracteristica seleccionable
-        │   ├── StringIcon/
+        │   ├── StringIcon/          #  
         │   ├── TimeCounter/         # Contador de tiempo
         │   ├── TimeProgress/        # Barra de progresion lineal o radial
         │   └── TitleComponent/      # Componente de titulo
