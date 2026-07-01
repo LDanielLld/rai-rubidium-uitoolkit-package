@@ -35,7 +35,7 @@ https://github.com/RAI-UMH/rai-rubidium-games-score.git
 - En el proyecto de Unity se crea la carpeta Assets/UI donde se incorporan todos los componentes
   que se van a utilizar en la interfaz de la actividad implementada
   > [!NOTE]
-  > Cada actividad puede tener diferentes compontes. Depende del diseño y los objetivos del juego.
+  > Cada actividad puede tener diferentes componentes. Depende del diseño y los objetivos del juego.
 - Copiar los archivos de estilo de los elementos y la interfaz general desde los siguientes directorios:
   1. El archivo UIInterface.uxml representa toda la interaz del sistema y se copia desde GUIToolkit/Runtime/UIViews/.
      Este elemento recolecta los bloques de interfaz que se mostrarán en los diferentes estados del juego: Inicio, juego, pausa, warning y finalizacion.     
@@ -100,28 +100,65 @@ Asi�gnalos en el Inspector del componente **FireworksRT**.
 
 ## Estructura del package
 
-## Estructura del directorio
-
 ```
 GUIToolkit/
-├── Runtime/                         # Carpeta con los datos brutos de BCI2000. Debe llamarse _data_
-│   ├── Shared/
-│   │   ├── Fonts/
-│   │   │   ├── *.otf                # Archivo CSV con los datos de los usuarios del estudio
-│   │   │   └── *.assets             # Archivo CSV con los datos de los usuarios del estudio
-│   │   ├── PanelSettings/
-│   │   │   ├── *.assets                # Archivo CSV con los datos de los usuarios del estudio
-│   │   │   └── Themes/
-│   │   │       ├── *.tss                # Archivo CSV con los datos de los usuarios del estudio
-│   │   │       └── ThemesStyles/
-│   │   │           └── *.uss
-│   │   ├── Styles/
-│   │   │   └── *.uss             # Archivo CSV con los datos de los usuarios del estudio
-│   │   └── Utilities/
-│   │       └── *.cs             # Archivo CSV con los datos de los usuarios del estudio
-│   └── UIViews
-│   │   ├── Components/
-│   │   └── Views/
+└── Runtime/                         # Carpeta con los datos brutos de BCI2000. Debe llamarse _data_
+    ├── Shared/
+    │   ├── Fonts/
+    │   │   ├── *.otf                # Archivo CSV con los datos de los usuarios del estudio
+    │   │   └── *.assets             # Archivo CSV con los datos de los usuarios del estudio
+    │   ├── PanelSettings/
+    │   │   ├── *.assets             # Archivo CSV con los datos de los usuarios del estudio
+    │   │   └── Themes/
+    │   │       ├── *.tss            # Archivo CSV con los datos de los usuarios del estudio
+    │   │       └── ThemesStyles/
+    │   │           └── *.uss
+    │   ├── Styles/
+    │   │   └── *.uss                # Archivo CSV con los datos de los usuarios del estudio
+    │   └── Utilities/
+    │       └── *.cs                 # Archivo CSV con los datos de los usuarios del estudio
+    └── UIViews
+        ├── Components/
+        │   ├── Digit/
+        │   ├── Fireworks/
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   ├── ScoreDisplay/
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   ├── ScoreDisplay/
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   ├── SpeedMeter/
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   ├── SpeedMeter/
+        │   │   ├── *.uss            # Arhivos de estilo
+        │   ├── Stat/
+        │   ├── StringIcon/
+        │   ├── TimeCounter/
+        │   ├── TimeProgress/        
+        │   └── TitleComponent/             
+        └── Views/                   # Vista de los estados correspondientes
+            ├── FinishView/          # Vista del estado "Final" del juego
+            │   ├── *.uss            # Arhivos de estilo
+            │   ├── *.uxml           # Plantilla de componente
+            │   └── *.cs             # Comportamiento del componente
+            ├── GameView/            # Vista del estado "Jugando" del juego
+            │   ├── *.uss            # Arhivos de estilo
+            │   ├── *.uxml           # Plantilla de la vista
+            │   └── *.cs             # Comportamiento de la vista
+            ├── PauseView/           # Vista del estado "Pausa" del juego
+            │   ├── *.uss            # Arhivos de estilo
+            │   ├── *.uxml           # Plantilla de la vista
+            │   └── *.cs             # Comportamiento de la vista
+            ├── StartView/           # Vista del estado "Inicio" del juego
+            │   ├── *.uss            # Arhivos de estilo
+            │   ├── *.uxml           # Plantilla de la vista
+            │   └── *.cs             # Comportamiento de la vista
+            └── WarningView/         # Vista del estado "Warning" del juego
+                ├── *.uss            # Arhivos de estilo
+                ├── *.uxml           # Plantilla de la vista
+                └── *.cs             # Comportamiento de la vista
+
 ├── _out/                           # Almacena las figuras generadas al procesar los datos
 │   ├── figures/
 │   └── ...
