@@ -30,13 +30,13 @@ https://github.com/RAI-UMH/rai-rubidium-games-score.git
 
 ## Configuracion inicial
 
-### 1. Inicializacion de los componentes de la interfaz
+### 1. Inicializacion de componentes
 
 - En el proyecto de Unity se crea la carpeta Assets/UI donde se incorporan todos los componentes
   que se van a utilizar en la interfaz de la actividad implementada
   > [!NOTE]
   > Cada actividad puede tener diferentes componentes. Depende del diseño y los objetivos del juego.
-- Copiar los archivos de estilo de los elementos y la interfaz general desde los siguientes directorios:
+- Copia los archivos de estilo de los elementos y la interfaz general desde los siguientes directorios:
   1. El archivo UIInterface.uxml representa toda la interaz del sistema y se copia desde GUIToolkit/Runtime/UIViews/.
      Este elemento recolecta los bloques de interfaz que se mostrarán en los diferentes estados del juego: Inicio, juego, pausa, warning y finalizacion.     
   2. La unica vista que hay que modificar de UIInterface.uxml es la que se muestra durente la fase de juego. Por lo tanto,
@@ -45,31 +45,13 @@ https://github.com/RAI-UMH/rai-rubidium-games-score.git
      Estos elementos se utilizarán para configurar el fichero GameView.uxml
 - Se colocan en la carpeta Assets para tener estos componentes visibles en el UIBuilder.
 
-### 2. Crear gestor de la interfaz
+### 2. Añadir interfaz a la escena
 
-- Crea un GameObject con los componentes GUIManager y UIDocument
-- UIDocument es el encargado de renderizar la interfaz junto a sus componentes de la libreria
+- Crea un GameObject y nombralo **GUIManager**
+- Añade el componente `UIDocument`para renderizar la interfaz junto a sus componentes de la libreria
   1. En Panel Settings se vincula el asset: GUIToolkit/Runtime/Shared/PanelSettings/UISettings.asset
   2. En Source Asset se incorpora el script de plantilla con el diseño planteado: UI/UIInterface.uxml
 
-### 2. Crear el tag de explosiones
-
-- En la misma ventana, seccion **Tags**
-- Añade el tag `FireworkExplosion`
-
-### 3. Configurar la Main Camera
-
-- Selecciona tu **Main Camera**
-- En **Culling Mask**, desmarca la capa `Fireworks`
-
-### 4. Anadir a la escena
-
-- Crea un **GameObject vacio** y nombralo `FireworksManager`
-- Anade el componente **UIDocument**
-  - Source Asset: `FireworksUI.uxml`
-  - Panel Settings: Scale With Screen Size, Sort Order = 1
-- Añade el script **FireworksRT**
-  - Fireworks Layer: `6`
 
 ### 5. Prefabs de particulas
 
@@ -104,76 +86,39 @@ Asi�gnalos en el Inspector del componente **FireworksRT**.
 GUIToolkit/
 └── Runtime/                         # Carpeta con los datos brutos de BCI2000. Debe llamarse _data_
     ├── Shared/
-    │   ├── Fonts/
-    │   │   ├── *.otf                # Archivo CSV con los datos de los usuarios del estudio
-    │   │   └── *.assets             # Archivo CSV con los datos de los usuarios del estudio
+    │   ├── Fonts/o
     │   ├── PanelSettings/
-    │   │   ├── *.assets             # Archivo CSV con los datos de los usuarios del estudio
     │   │   └── Themes/
-    │   │       ├── *.tss            # Archivo CSV con los datos de los usuarios del estudio
     │   │       └── ThemesStyles/
-    │   │           └── *.uss
     │   ├── Styles/
-    │   │   └── *.uss                # Archivo CSV con los datos de los usuarios del estudio
     │   └── Utilities/
-    │       └── *.cs                 # Archivo CSV con los datos de los usuarios del estudio
     └── UIViews
-        ├── Components/
-        │   ├── Digit/
-        │   ├── Fireworks/
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   ├── ScoreDisplay/
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   ├── ScoreDisplay/
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   ├── SpeedMeter/
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   ├── SpeedMeter/
-        │   │   ├── *.uss            # Arhivos de estilo
-        │   ├── Stat/
+        ├── Components/              # Componentes que forman parte de las vistas de estado
+        │   ├── Digit/               # Control de digitos numericos
+        │   ├── Fireworks/           # Componente que simula unos fuegos artificiales 
+        │   │   ├── Materials/               
+        │   │   ├── Prefabs/         
+        │   │   └── Textures/                  
+        │   │       ├── Point/                 
+        │   │       └── Trail/                 
+        │   ├── ScoreDisplay/        # Marcador de puntuación con combos de bonificación
+        │   │   └── Textures/                  
+        │   ├── ScoreRow/            # Cada una de las marcas que aparecen en la tabla de puntuacion 
+        │   │   └── Textures/         
+        │   ├── SpeedMeter/          # Velocimetro animado
+        │   │   └── Textures/        
+        │   ├── Stat/                # Marcador con alguna caracteristica seleccionable
         │   ├── StringIcon/
-        │   ├── TimeCounter/
-        │   ├── TimeProgress/        
-        │   └── TitleComponent/             
+        │   ├── TimeCounter/         # Contador de tiempo
+        │   ├── TimeProgress/        # Barra de progresion lineal o radial
+        │   └── TitleComponent/      # Componente de titulo
         └── Views/                   # Vista de los estados correspondientes
-            ├── FinishView/          # Vista del estado "Final" del juego
-            │   ├── *.uss            # Arhivos de estilo
-            │   ├── *.uxml           # Plantilla de componente
-            │   └── *.cs             # Comportamiento del componente
-            ├── GameView/            # Vista del estado "Jugando" del juego
-            │   ├── *.uss            # Arhivos de estilo
-            │   ├── *.uxml           # Plantilla de la vista
-            │   └── *.cs             # Comportamiento de la vista
-            ├── PauseView/           # Vista del estado "Pausa" del juego
-            │   ├── *.uss            # Arhivos de estilo
-            │   ├── *.uxml           # Plantilla de la vista
-            │   └── *.cs             # Comportamiento de la vista
+            ├── FinishView/          # Vista del estado "Final" del juego            
+            ├── GameView/            # Vista del estado "Jugando" del juego            
+            ├── PauseView/           # Vista del estado "Pausa" del juego            
             ├── StartView/           # Vista del estado "Inicio" del juego
-            │   ├── *.uss            # Arhivos de estilo
-            │   ├── *.uxml           # Plantilla de la vista
-            │   └── *.cs             # Comportamiento de la vista
-            └── WarningView/         # Vista del estado "Warning" del juego
-                ├── *.uss            # Arhivos de estilo
-                ├── *.uxml           # Plantilla de la vista
-                └── *.cs             # Comportamiento de la vista
-
-├── _out/                           # Almacena las figuras generadas al procesar los datos
-│   ├── figures/
-│   └── ...
-├── log/                            # Almacena archivos log del procesamiento
-│   ├── .main_process_dt.log
-│   └── .main_process_parfor.log
-├── addpath/                           # Scripts de Matlab para el procesamiento
-└── workspace.m                     # Script para organizar y ordenar el procesamiento de los datos.
+            └── WarningView/         # Vista del estado "Warning" del juego            
 ```
-
-Runtime/
-FireworksRT.cs          Script principal
-FireworksUI.uxml        Layout del panel de controles
-FireworksUI.uss         Estilos del panel
-FireworksRT.asmdef      Assembly Definition
 
 ## Licencia
 
