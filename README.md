@@ -60,7 +60,7 @@ https://github.com/RAI-UMH/rai-rubidium-games-score.git
   1. En Panel Settings se vincula el asset: GUIToolkit/Runtime/Shared/PanelSettings/UISettings.asset
   2. En Source Asset se incorpora el script de plantilla con el diseño planteado: UI/UIInterface.uxml
 
-### 5. Uso y actualización de componentes
+### 4. Uso y actualización de componentes
 
 Los componentes se utilizan y actualizan desde cualquier script dentro del juego, haciendo uso de los eventos registrados en GameView.
   - Ejemplo: UIEvents.SoundEndStartView?.Invoke();
